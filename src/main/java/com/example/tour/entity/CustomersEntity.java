@@ -11,8 +11,6 @@ import java.util.List;
 
 @Data
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
 @Table(name ="Customer")
 public class CustomersEntity {
 

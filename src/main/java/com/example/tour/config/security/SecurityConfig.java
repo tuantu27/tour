@@ -12,10 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
-import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
 @EnableWebSecurity
@@ -30,13 +27,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private LoginSuccessHandler loginSuccessHandler;
-//    @Bean
-//    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-//        httpSecurity.csrf().disable();
-//        httpSecurity.authorizeHttpRequests(authorize -> authorize.anyRequest().authenticated());
-//        httpSecurity.httpBasic(withDefaults());
-//        return httpSecurity.build();
-//    }
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
@@ -51,24 +41,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/user/new").permitAll()
-                .antMatchers("/user/**").hasAnyAuthority("Admin")
-                .antMatchers("/userrole/**").hasAnyAuthority("Admin")
-                .antMatchers("/member/**").authenticated() // Chỉ cần đăng nhập là có thể vào /...
-                .antMatchers("/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs/**").permitAll() // những đường dẫn không cần bảo mật
+                .antMatchers("/account/new").permitAll()
+                .antMatchers("/account/**").hasAnyAuthority("Admin")
+                .antMatchers("/role/**").hasAnyAuthority("Admin")
+                .antMatchers("/company/**").authenticated() // Chỉ cần đăng nhập là có thể vào /...
                 .anyRequest().permitAll().and()
                 .csrf().disable()
                 .formLogin()
                 .loginPage("/login")
                 .successHandler(loginSuccessHandler)
-                .failureUrl("/login?err=true")
+                .failureUrl("/api/login?err=true")
                 .and().logout()
                 .logoutSuccessUrl("/login")
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID")
 //                .and().httpBasic().and()
                 .and()
-                .exceptionHandling().accessDeniedPage("/login");
+                .exceptionHandling().accessDeniedPage("/api/login");
 
         http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
 

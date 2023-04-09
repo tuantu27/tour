@@ -9,8 +9,6 @@ import java.util.List;
 
 @Data
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
 @Table(name ="typeTour")
 public class TypeTourEntity {
 

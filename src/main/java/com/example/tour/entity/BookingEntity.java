@@ -10,8 +10,6 @@ import java.sql.Timestamp;
 
 @Data
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
 @Table(name ="booking")
 public class BookingEntity {
 

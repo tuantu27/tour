@@ -10,8 +10,6 @@ import java.util.List;
 
 @Data
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
 @Table(name ="company")
 public class CompanysEntity {
 

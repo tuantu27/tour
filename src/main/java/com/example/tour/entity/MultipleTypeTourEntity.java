@@ -9,8 +9,6 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
 @Table(name ="multipleTypeTour")
 public class MultipleTypeTourEntity {
     @Id

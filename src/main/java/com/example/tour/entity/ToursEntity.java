@@ -11,8 +11,6 @@ import java.util.List;
 
 @Data
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
 @Table(name ="tour")
 public class ToursEntity {
 
@@ -45,8 +43,5 @@ public class ToursEntity {
 
     @OneToMany(mappedBy = "tour")
     private List<MultipleTypeTourEntity> lstMulTypeTour;
-
-
-
 
 }

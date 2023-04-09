@@ -2,30 +2,38 @@ package com.example.tour.entity;
 
 
 import javax.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import javax.validation.constraints.NotEmpty;
 
-import java.sql.Timestamp;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
+import java.util.Date;
 import java.util.List;
 
 @Data
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
-@Table(name ="Account")
+@Table(name = "account")
 public class AccountsEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long accountId;
-    private String userName;
-    private String passWord;
+    @Column(unique = true)
+    @NotEmpty(message = "{not.empty}")
+    private String username;
+    @NotEmpty(message = "{not.empty}")
+
+    private String password;
     private String avatar;
     private String email;
-    private int roles;
-    private Timestamp createdAt;
-    private Timestamp updatedAt;
+    @JsonFormat(pattern = "dd/MM/yyyy")
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    private Date createDate;
+    @JsonFormat(pattern = "dd/MM/yyyy")
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    private Date updateDate;
 
     @OneToMany(mappedBy = "account")
     private List<ToursEntity> toursEntityList;
@@ -34,5 +42,8 @@ public class AccountsEntity {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "companyId")
     private CompanysEntity company;
+    @JsonBackReference
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    private List<Role> roles;
 
 }

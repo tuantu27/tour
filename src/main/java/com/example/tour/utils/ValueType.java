@@ -1,7 +1,5 @@
 package com.example.tour.utils;
 
-import org.bson.types.ObjectId;
-
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
@@ -41,8 +39,6 @@ public class ValueType {
             return ValueType.LIST_TYPE;
         if (str.equals("LinkedHashMap") || str.equals("java.util.LinkedHashMap"))
             return ValueType.LINKED_HASHMAP;
-        if (str.equals("ObjectId") || str.equals("org.bson.types.ObjectId"))
-            return ValueType.OBJECT_ID;
         return null;
     }
 
@@ -92,7 +88,6 @@ public class ValueType {
     public static final ValueType TIMESTAMP = new ValueType(new Timestamp(new GregorianCalendar().getTimeInMillis()));
     public static final ValueType LIST_TYPE = new ValueType(new ArrayList<>());
     public static final ValueType LINKED_HASHMAP = new ValueType(new LinkedHashMap());
-    public static final ValueType OBJECT_ID = new ValueType(new ObjectId());
 
     public Object getObjectClass() {
         if (name.equals("String") || name.equals("java.lang.String"))
