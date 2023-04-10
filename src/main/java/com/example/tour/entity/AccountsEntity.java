@@ -44,6 +44,6 @@ public class AccountsEntity {
     private CompanysEntity company;
     @JsonBackReference
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
-    private List<Role> roles;
+    private List<RoleEntity> roles;
 
 }

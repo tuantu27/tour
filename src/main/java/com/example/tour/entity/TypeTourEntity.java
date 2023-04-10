@@ -1,5 +1,4 @@
 package com.example.tour.entity;
-
 import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,6 +8,8 @@ import java.util.List;
 
 @Data
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name ="typeTour")
 public class TypeTourEntity {
 
