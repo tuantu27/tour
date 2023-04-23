@@ -11,6 +11,8 @@ import java.util.List;
 
 @Data
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name ="tour")
 public class ToursEntity {
 
@@ -31,11 +33,18 @@ public class ToursEntity {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "accountId")
     private AccountsEntity account;
+
     @OneToMany(mappedBy = "tour")
     private List<ReviewsEntity> lstReview;
+
+ 
     @OneToMany(mappedBy = "tour")
     private List<BookingEntity> lstBooking;
+
     @OneToMany(mappedBy = "tour")
     private List<MultipleTypeTourEntity> lstMulTypeTour;
+
+
+
 
 }
