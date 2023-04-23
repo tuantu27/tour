@@ -31,16 +31,10 @@ public class ToursEntity {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "accountId")
     private AccountsEntity account;
-
     @OneToMany(mappedBy = "tour")
     private List<ReviewsEntity> lstReview;
-
-    @OneToMany(mappedBy = "tour")
-    private List<DestinationsEntity> lstDestination;
-
     @OneToMany(mappedBy = "tour")
     private List<BookingEntity> lstBooking;
-
     @OneToMany(mappedBy = "tour")
     private List<MultipleTypeTourEntity> lstMulTypeTour;
 
