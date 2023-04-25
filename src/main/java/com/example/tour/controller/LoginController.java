@@ -28,11 +28,12 @@ public class LoginController {
     public String login(Model model,
                         @RequestParam("username") String username,
                         @RequestParam("password") String password,
-                        HttpSession session) throws SQLException {
+                        HttpSession session){
         List<AccountsEntity> users = accountRepository.findAll();
         for (AccountsEntity user : users) {
             if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
                 model.addAttribute("test");
+                System.out.println("1");
                 return "redirect:/account/search";
             } else
                 session.setAttribute("currentUser", user);

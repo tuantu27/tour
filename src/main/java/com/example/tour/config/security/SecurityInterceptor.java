@@ -22,7 +22,7 @@ public class SecurityInterceptor implements HandlerInterceptor {
         System.out.println(request.getMethod());
 
         String path = request.getServletPath();
-        if (path.equals("/account")) {
+        if (path.equals("/user")) {
             //role admin
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             if (auth != null

@@ -41,8 +41,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-//                .antMatchers("/account/new").permitAll()
-//                .antMatchers("/account/**").hasAnyAuthority("Admin")
+                .antMatchers("/account/new").permitAll()
+                .antMatchers("/account/**").hasAnyAuthority("Admin")
                 .antMatchers("/role/**").hasAnyAuthority("Admin")
                 .antMatchers("/tour/**").authenticated() // Chỉ cần đăng nhập là có thể vào /...
                 .anyRequest().permitAll().and()
