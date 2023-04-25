@@ -2,6 +2,9 @@ package com.example.tour.entity;
 
 
 import javax.persistence.*;
+
+import com.example.tour.model.dto.AccountsDTO;
+import com.example.tour.model.dto.ToursDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -44,6 +47,23 @@ public class ToursEntity {
     @OneToMany(mappedBy = "tour")
     private List<MultipleTypeTourEntity> lstMulTypeTour;
 
+    public static ToursDTO toDto(ToursEntity toursEntity){
+        ToursDTO toursDTO = new ToursDTO();
+        toursDTO.setTourId(toursEntity.getTourId());
+        toursDTO.setTourName(toursEntity.getTourName());
+        toursDTO.setStartDate(toursEntity.getStartDate());
+        toursDTO.setDuration(toursEntity.getDuration());
+        toursDTO.setDescription(toursEntity.getDescription());
+        toursDTO.setPriceAdult(toursEntity.getPriceAdult());
+        toursDTO.setPriceChildren(toursEntity.getPriceChildren());
+        toursDTO.setPriceInfant(toursEntity.getPriceInfant());
+        toursDTO.setStatus(toursEntity.getStatus());
+        toursDTO.setAccountsDTO(toursEntity.getAccount().toDto(toursEntity.getAccount()));
+
+        return toursDTO;
+
+
+    };
 
 
 

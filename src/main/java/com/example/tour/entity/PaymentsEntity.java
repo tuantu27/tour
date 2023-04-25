@@ -16,6 +16,7 @@ public class PaymentsEntity {
     private Long paymentId;
 
     private String paymentMethod;
+    private String image;
 
 
     @ManyToOne(cascade = CascadeType.PERSIST)

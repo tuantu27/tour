@@ -2,6 +2,8 @@ package com.example.tour.entity;
 
 
 import javax.persistence.*;
+
+import com.example.tour.model.dto.BookingDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -35,4 +37,9 @@ public class BookingEntity {
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "tourId")
     private ToursEntity tour;
+
+//    public static BookingDTO toDto(BookingEntity bookingEntity){
+//
+//
+//    }
 }
