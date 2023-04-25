@@ -57,20 +57,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter   {
                         "/admin_style/webfonts/**").permitAll()
                 .antMatchers("/account/**").hasAnyAuthority("Admin")
                 .antMatchers("/role/**").hasAnyAuthority("Admin")
-                .antMatchers("/company/**").authenticated() // Chỉ cần đăng nhập là có thể vào /...
+                .antMatchers("/tour/**").authenticated() // Chỉ cần đăng nhập là có thể vào /...
                 .anyRequest().permitAll().and()
                 .csrf().disable()
                 .formLogin()
                 .loginPage("/login")
                 .successHandler(loginSuccessHandler)
-                .failureUrl("/api/login?err=true")
+                .failureUrl("/login?err=true")
                 .and().logout()
                 .logoutSuccessUrl("/login")
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID")
 //                .and().httpBasic().and()
                 .and()
-                .exceptionHandling().accessDeniedPage("/api/login");
+                .exceptionHandling().accessDeniedPage("/login");
 
         http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
 
