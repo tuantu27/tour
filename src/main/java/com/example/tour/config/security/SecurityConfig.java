@@ -11,8 +11,10 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -49,26 +51,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter   {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/**","/account/new" , "/css/**","/images/**","/js/**","/vendors/**","/vendors/bootstrap/css/**","/vendors/bootstrap/js/**"
+                .antMatchers( "/css/**","/images/**","/js/**","/vendors/**","/vendors/bootstrap/css/**","/vendors/bootstrap/js/**"
                         , "/vendors/countdown-date-loop-counter/**","/vendors/fontawesome/css/**" ,"/vendors/fontawesome/webfonts/**",
                         "/jquery-ui/images/**","/jquery-ui/**","/vendors/lightbox.dist/**","/vendors/lightbox.dist/css/**",
                         "/vendors/lightbox.dist/js/**","/vendors/masonry/**","/vendors/modal-video/**",
                         "/vendors/slick/**","/vendors/slick/fonts/**", "/admin_style/css/**","/admin_style/js/**","/admin_style/images/**",
                         "/admin_style/webfonts/**").permitAll()
+                .antMatchers("/admin/**").hasAnyAuthority("Admin")
                 .antMatchers("/account/**").hasAnyAuthority("Admin")
-                .antMatchers("/role/**").hasAnyAuthority("Admin")
-                .antMatchers("/tour/**").authenticated() // Chỉ cần đăng nhập là có thể vào /...
+                .antMatchers("/subAdmin/**").hasAnyAuthority("SubAdmin")
+                // Chỉ cần đăng nhập là có thể vào /...
                 .anyRequest().permitAll().and()
                 .csrf().disable()
                 .formLogin()
                 .loginPage("/login")
+                .successForwardUrl("/login?err=true")
                 .successHandler(loginSuccessHandler)
-                .failureUrl("/login?err=true")
                 .and().logout()
                 .logoutSuccessUrl("/login")
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID")
-//                .and().httpBasic().and()
+                .and().httpBasic()
                 .and()
                 .exceptionHandling().accessDeniedPage("/login");
 
@@ -76,6 +79,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter   {
 
 
     }
+
 
 
 

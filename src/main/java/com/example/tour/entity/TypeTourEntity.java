@@ -1,5 +1,7 @@
 package com.example.tour.entity;
 import javax.persistence.*;
+
+import com.example.tour.model.dto.TypeTourDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,5 +24,14 @@ public class TypeTourEntity {
 
     @OneToMany(mappedBy = "typeTour")
     private List<MultipleTypeTourEntity> lstMuTypeTour;
+
+    public static TypeTourDTO toDto(TypeTourEntity typeTour){
+        TypeTourDTO typeTourDTO = new TypeTourDTO();
+        typeTourDTO.setTypeTourId(typeTour.getTypeTourId());
+        typeTourDTO.setNameTypeTour(typeTour.getNameTypeTour());
+        typeTourDTO.setRegion(typeTour.getRegion());
+        return typeTourDTO;
+
+    }
 
 }

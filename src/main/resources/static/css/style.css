@@ -1573,8 +1573,11 @@ input[type=submit]:focus {
   margin: 0;
   padding: 0;
 }
-.main-navigation ul > li.menu-item-has-children > a:after {
+.main-navigation ul > li.menu-item-has-children.aaa > a:after {
   content: "\f0d7";
+}
+.aaa > a:after{
+  display: none;
 }
 .main-navigation ul > li:last-child {
   border-bottom: none;
@@ -1675,7 +1678,7 @@ input[type=submit]:focus {
 .main-navigation ul li.menu-item-has-children > a {
   position: relative;
 }
-.main-navigation ul li.menu-item-has-children > a:after {
+.main-navigation ul li.menu-item-has-children.aaa > a:after {
   display: inline-block;
   float: right;
   font-size: 14px;

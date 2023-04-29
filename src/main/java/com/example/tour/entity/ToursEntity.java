@@ -27,6 +27,7 @@ public class ToursEntity {
     private String startDate;
     private String duration; // khoang thoi gian
     private String description;
+    private String imgName;
     private Long priceAdult;
     private Long priceChildren;
     private Long priceInfant;
@@ -54,6 +55,7 @@ public class ToursEntity {
         toursDTO.setStartDate(toursEntity.getStartDate());
         toursDTO.setDuration(toursEntity.getDuration());
         toursDTO.setDescription(toursEntity.getDescription());
+        toursDTO.setImgName(toursEntity.getImgName());
         toursDTO.setPriceAdult(toursEntity.getPriceAdult());
         toursDTO.setPriceChildren(toursEntity.getPriceChildren());
         toursDTO.setPriceInfant(toursEntity.getPriceInfant());

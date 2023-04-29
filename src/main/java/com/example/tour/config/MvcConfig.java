@@ -20,7 +20,7 @@ public class MvcConfig implements WebMvcConfigurer {
 
  @Override
  public void addResourceHandlers(ResourceHandlerRegistry registry) {
-     registry.addResourceHandler("images/**")
+     registry.addResourceHandler("images_data/**")
            .addResourceLocations("file:/" + directory);
  }
 

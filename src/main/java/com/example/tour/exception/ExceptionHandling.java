@@ -1,4 +1,5 @@
 package com.example.tour.exception;
+
 import com.example.tour.config.app.CustomStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -16,8 +16,10 @@ public class ToursDTO {
     private String startDate;
     private String duration; // khoang thoi gian
     private String description;
+    private String imgName;
     private Long priceAdult;
     private Long priceChildren;
+    private String formatPrice;
     private Long priceInfant;
     private int status;
     private AccountsDTO accountsDTO;

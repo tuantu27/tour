@@ -1,6 +1,5 @@
 package com.example.tour;
 
-import com.example.tour.config.security.SecurityInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,15 +13,15 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @EnableScheduling
 @SpringBootApplication(exclude= {UserDetailsServiceAutoConfiguration.class})
 public class TourApplication implements WebMvcConfigurer{
-    @Autowired
-    SecurityInterceptor securityInterceptor;
+//    @Autowired
+//    SecurityInterceptor securityInterceptor;
 
     public static void main(String[] args) {
         SpringApplication.run(TourApplication.class, args);
     }
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(securityInterceptor);
-    }
+//    @Override
+//  //  public void addInterceptors(InterceptorRegistry registry) {
+//        registry.addInterceptor(securityInterceptor);
+//    }
 
 }

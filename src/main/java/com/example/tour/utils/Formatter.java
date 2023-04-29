@@ -277,6 +277,7 @@ public class Formatter {
             if (rownMoney) {
                 dMoney = this.round(dMoney, 0);
                 retval = this.num2str(dMoney);
+
             } else { //check ,00
                 dMoney = this.round(dMoney, 2);
                 retval = nff.format(dMoney);
@@ -284,6 +285,7 @@ public class Formatter {
                 if (!"vi".equals(language)) {
                     retval = retval.replaceAll(",", " ");
                 }
+
             }
         } catch (Exception e) {
             throw new CustomException(CustomStatus.SOMETHING_WENT_WRONG, e.getLocalizedMessage());

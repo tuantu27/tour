@@ -23,12 +23,10 @@ public class LoginSuccessHandler  extends SavedRequestAwareAuthenticationSuccess
 
         String redirectURL = request.getContextPath();
         for (GrantedAuthority role : userDetails.getAuthorities()) {
-            if (!role.getAuthority().equals("Admin")) {
-                redirectURL = "/tour/search";
-            } else if (role.getAuthority().equals("SubAdmin")) {
-                redirectURL = "/account/search";
+            if (role.getAuthority().equals("SubAdmin")) {
+                redirectURL = "/subAdmin/tour";
             } else if (role.getAuthority().equals("Admin")) {
-                redirectURL = "/account/search";
+                redirectURL = "/admin/company";
             }
         }
         response.sendRedirect(redirectURL);

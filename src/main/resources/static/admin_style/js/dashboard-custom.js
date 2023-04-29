@@ -11,7 +11,6 @@ $(document).ready(function(){
       closedSymbol: '<i class="fas fa-plus"></i>',
       openedSymbol: '<i class="fas fa-minus"></i>',
       prependTo: '#dashboard-Navigation',
-      allowParentLinks: true,
       duplicate: false,
       closeOnClick: true, // Close menu when a link is clicked.
       allowParentLinks: true, // Allow clickable links as parent elements.

@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <!-- Required meta tags -->
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -35,222 +37,58 @@
 <div id="page" class="full-page">
     <header id="masthead" class="site-header header-primary">
         <!-- header html start -->
-        <div class="top-header">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 d-none d-lg-block">
-                        <div class="header-contact-info">
-                            <ul>
-                                <li>
-                                    <a href="#"><i class="fas fa-phone-alt"></i> +01 (977) 2599 12</a>
-                                </li>
-                                <li>
-                                    <a href="https://demo.bosathemes.com/cdn-cgi/l/email-protection#9cf5f2faf3dcc8eefdeaf9f0b2fff3f1"><i class="fas fa-envelope"></i> <span class="__cf_email__" data-cfemail="3754585a4756594e7753585a565e591954585a">[email&#160;protected]</span></a>
-                                </li>
-                                <li>
-                                    <i class="fas fa-map-marker-alt"></i> 3146 Koontz Lane, California
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 d-flex justify-content-lg-end justify-content-between">
-                        <div class="header-social social-links">
-                            <ul>
-                                <li><a href="#"><i class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fab fa-linkedin" aria-hidden="true"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="header-search-icon">
-                            <button class="search-icon">
-                                <i class="fas fa-search"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="bottom-header">
             <div class="container d-flex justify-content-between align-items-center">
                 <div class="site-identity">
                     <h1 class="site-title">
                         <a href="index-2.html">
-                            <img class="white-logo" src="" alt="logo">
-                            <img class="black-logo" src="" alt="logo">
+                            <img class="white-logo" th:src="|@{/images/}travele-logo.png|" alt="logo">
                         </a>
                     </h1>
                 </div>
                 <div class="main-navigation d-none d-lg-block">
                     <nav id="navigation" class="navigation">
                         <ul>
-                            <li class="menu-item-has-children">
-                                <a href="index-2.html">Home</a>
-                                <ul>
-                                    <li>
-                                        <a href="index-v2.html">Home 2</a>
-                                    </li>
-                                </ul>
+                            <li class="menu-item-has-children ">
+                                <a href="index-2.html">Trang chủ</a>
                             </li>
-                            <li class="menu-item-has-children">
-                                <a href="#">Tour</a>
+
+                            <li class="menu-item-has-children aaa">
+                                <a href="#">Địa điểm du lịch</a>
                                 <ul>
-                                    <li>
-                                        <a href="destination.html">Destination</a>
-                                    </li>
-                                    <li>
-                                        <a href="tour-packages.html">Tour Packages</a>
-                                    </li>
-                                    <li>
-                                        <a href="package-offer.html">Package Offer</a>
-                                    </li>
-                                    <li>
-                                        <a href="package-detail.html">Package Detail</a>
-                                    </li>
-                                    <li>
-                                        <a href="tour-cart.html">Tour Cart</a>
-                                    </li>
-                                    <li>
-                                        <a href="booking.html">Package Booking</a>
-                                    </li>
-                                    <li>
-                                        <a href="confirmation.html">Confirmation</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="menu-item-has-children">
-                                <a href="#">Pages</a>
-                                <ul>
-                                    <li>
-                                        <a href="about.html">About</a>
-                                    </li>
-                                    <li>
-                                        <a href="service.html">Service</a>
-                                    </li>
-                                    <li>
-                                        <a href="career.html">Career</a>
-                                    </li>
-                                    <li>
-                                        <a href="career-detail.html">Career Detail</a>
-                                    </li>
-                                    <li>
-                                        <a href="tour-guide.html">Tour Guide</a>
-                                    </li>
-                                    <li>
-                                        <a href="gallery.html">Gallery</a>
-                                    </li>
-                                    <li>
-                                        <a href="single-page.html">Single Page</a>
-                                    </li>
-                                    <li>
-                                        <a href="faq.html">FAQ Page</a>
-                                    </li>
-                                    <li>
-                                        <a href="testimonial-page.html">Testimonial Page</a>
-                                    </li>
-                                    <li>
-                                        <a href="popup.html">Popup</a>
-                                    </li>
-                                    <li>
-                                        <a href="search-page.html">Search Page</a>
-                                    </li>
-                                    <li>
-                                        <a href="404.html">404 Page</a>
-                                    </li>
-                                    <li>
-                                        <a href="comming-soon.html">Comming Soon</a>
-                                    </li>
-                                    <li>
-                                        <a href="contact.html">Contact</a>
-                                    </li>
-                                    <li>
-                                        <a href="wishlist-page.html">Wishlist</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="menu-item-has-children">
-                                <a href="single-page.html">Shop</a>
-                                <ul>
-                                    <li>
-                                        <a href="product-right.html">Shop Archive</a>
-                                    </li>
-                                    <li>
-                                        <a href="product-detail.html">Shop Single</a>
-                                    </li>
-                                    <li>
-                                        <a href="product-cart.html">Shop Cart</a>
-                                    </li>
-                                    <li>
-                                        <a href="product-checkout.html">Shop Checkout</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="menu-item-has-children">
-                                <a href="#">Blog</a>
-                                <ul>
-                                    <li><a href="blog-archive.html">Blog List</a></li>
-                                    <li><a href="blog-archive-left.html">Blog Left Sidebar</a></li>
-                                    <li><a href="blog-archive-both.html">Blog Both Sidebar</a></li>
-                                    <li><a href="blog-single.html">Blog Single</a></li>
-                                </ul>
-                            </li>
-                            <li class="menu-item-has-children">
-                                <a href="#">Dashboard</a>
-                                <ul>
-                                    <li>
-                                        <a href="admin/dashboard.html">Dashboard</a>
-                                    </li>
-                                    <li class="menu-item-has-children">
-                                        <a href="#">User</a>
+                                    <li class="menu-item-has-children aaa">
+                                        <a href="#">Du lịch miền bắc</a>
                                         <ul>
-                                            <li>
-                                                <a href="admin/user.html">User List</a>
+                                            <li th:each="typeMB : ${lstTypeTour}">
+                                                <a href="" th:if="${typeMB.region=='1'}"><p th:text="${typeMB.nameTypeTour}"></p></a>
                                             </li>
-                                            <li>
-                                                <a href="admin/user-edit.html">User Edit</a>
-                                            </li>
-                                            <li>
-                                                <a href="admin/new-user.html">New User</a>
+
+                                        </ul>
+                                    </li>
+
+                                    <li class="menu-item-has-children aaa">
+                                        <a href="admin/db-package.html">Du lịch miền trung</a>
+                                        <ul>
+                                            <li th:each="typeMB : ${lstTypeTour}">
+                                                <a href="" th:if="${typeMB.region=='2'}"><p th:text="${typeMB.nameTypeTour}"></p></a>
                                             </li>
                                         </ul>
                                     </li>
-                                    <li>
-                                        <a href="admin/db-booking.html">Booking</a>
-                                    </li>
-                                    <li class="menu-item-has-children">
-                                        <a href="admin/db-package.html">Package</a>
+                                    <li class="menu-item-has-children aaa">
+                                        <a href="admin/db-package.html">Du lịch miền nam</a>
                                         <ul>
-                                            <li>
-                                                <a href="admin/db-package-active.html">Package Active</a>
-                                            </li>
-                                            <li>
-                                                <a href="admin/db-package-pending.html">Package Pending</a>
-                                            </li>
-                                            <li>
-                                                <a href="admin/db-package-expired.html">Package Expired</a>
+                                            <li th:each="typeMB : ${lstTypeTour}">
+                                                <a href="" th:if="${typeMB.region=='3'}"><p th:text="${typeMB.nameTypeTour}"></p></a>
                                             </li>
                                         </ul>
                                     </li>
-                                    <li>
-                                        <a href="admin/db-comment.html">Comments</a>
-                                    </li>
-                                    <li>
-                                        <a href="admin/db-wishlist.html">Wishlist</a>
-                                    </li>
-                                    <li>
-                                        <a href="admin/login.html">Login</a>
-                                    </li>
-                                    <li>
-                                        <a href="admin/forgot.html">Forget Password</a>
-                                    </li>
+
                                 </ul>
                             </li>
                         </ul>
                     </nav>
                 </div>
-                <div class="header-btn">
-                    <a href="#" class="button-primary">BOOK NOW</a>
-                </div>
+
             </div>
         </div>
         <div class="mobile-menu-container"></div>
@@ -259,20 +97,16 @@
         <!-- Home banner html start -->
         <section class="home-banner-section">
             <div class="home-banner-items">
-                <div class="banner-inner-wrap" ></div>
+                <div class="banner-inner-wrap" style="background-image: url(/images_data/banner-du-lich.jpg)" ></div>
                 <div class="banner-content-wrap">
                     <div class="container">
                         <div class="row align-items-center">
                             <div class="col-lg-8">
                                 <div class="banner-content section-heading section-heading-white">
-                                    <h5>EXPLORE. DISCOVER. TRAVEL</h5>
-                                    <h2 class="banner-title">JOURNEY TO EXPLORE NATURE</h2>
+                                    <h3 class="banner-title">Chào mừng đến với Travele</h3>
+                                    <h4 style="color: white">Khám phá mọi miền Tổ Quốc</h4>
                                     <div class="title-icon-divider"><i class="fas fa-suitcase-rolling"></i></div>
-                                    <p>Taciti quasi, sagittis excepteur hymenaeos, id temporibus hic proident ullam, eaque donec delectus tempor consectetur nunc, purus congue? Rem volutpat sodales! Mollit. Minus exercitationem wisi.</p>
-                                    <div class="slider-button">
-                                        <a href="#" class="button-primary">READ MORE</a>
-                                        <a href="#" class="button-secondary">SEE ALL OFFER</a>
-                                    </div>
+
                                 </div>
                             </div>
                             <div class="col-lg-4">
@@ -281,26 +115,17 @@
                                     <div class="container">
                                         <div class="trip-search-inner secondary-bg">
                                             <div class="input-group width-col-1">
-                                                <label> Search Destination* </label>
-                                                <input type="text" name="s" placeholder="Enter Destination">
+                                                <label> Địa điểm muốn đến  </label>
+                                                <input type="text" name="s" placeholder="Địa điểm">
                                             </div>
                                             <div class="input-group width-col-1">
-                                                <label> Pax Number* </label>
-                                                <input type="text" name="s" placeholder="No.of People">
-                                            </div>
-                                            <div class="input-group width-col-1">
-                                                <label> Checkin Date* </label>
+                                                <label> Ngày khởi hành </label>
                                                 <i class="far fa-calendar"></i>
-                                                <input class="input-date-picker" type="text" name="s" placeholder="MM / DD / YY" autocomplete="off" readonly="readonly">
+                                                <input class="input-date-picker" type="text" name="s" placeholder="MM / DD / YY" autocomplete="off" >
                                             </div>
                                             <div class="input-group width-col-1">
-                                                <label> Checkout Date* </label>
-                                                <i class="far fa-calendar"></i>
-                                                <input class="input-date-picker" type="text" name="s" placeholder="MM / DD / YY" autocomplete="off" readonly="readonly">
-                                            </div>
-                                            <div class="input-group width-col-1">
-                                                <label class="screen-reader-text"> Search </label>
-                                                <input type="submit" name="travel-search" value="INQUIRE NOW">
+                                                <label class="screen-reader-text"> Tìm kiếm </label>
+                                                <input type="submit" name="travel-search" value="Tìm kiếm">
                                             </div>
                                         </div>
                                     </div>
@@ -313,104 +138,60 @@
                 <div class="overlay"></div>
             </div>
         </section>
-        <div class="db-info-wrap db-wislist-wrap">
-            <div class="dashboard-box ">
-                <div class="row">
-                    <div class="grid-item col-md-6 col-lg-4">
-                        <div class="package-wrap">
-                            <figure class="feature-image">
-                                <a href="#">
-                                    <img src="" alt="">
-                                </a>
-                            </figure>
-                            <div class="package-price">
-                                <h6>
-                                    <span>$1,900 </span> / per person
-                                </h6>
-                            </div>
-                            <div class="package-content-wrap">
-                                <div class="package-content">
-                                    <h4>
-                                        <a href="#">Sunset view of beautiful lakeside resident</a>
-                                    </h4>
-                                    <div class="content-details">
-                                        <div class="rating-start" title="Rated 5 out of 5">
-                                            <span></span>
-                                        </div>
-                                        <span class="review-text"><a href="#">1 review</a></span>
+
+        <div class="package-section">
+            <div class="container">
+                <div class="package-inner">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6" th:each="tour:${lstTour}">
+                            <div class="package-wrap">
+                                <figure class="feature-image">
+                                    <a href="#">
+                                        <img th:src="|@{/images_data/}${tour.imgName}|" alt="">
+                                    </a>
+                                </figure>
+                                <div class="package-price">
+                                    <h6>
+                                        <span th:text="${tour.formatPrice}"></span> VND/người
+                                    </h6>
+                                </div>
+                                <div class="package-content-wrap">
+                                    <div class="package-meta text-center">
+                                        <ul>
+                                            <li th:text="${tour.duration}">
+                                                <i class="far fa-clock"></i>
+                                                7D/6N
+                                            </li>
+
+                                            <li th:text="${tour.tourName}">
+                                                <i class="fas fa-map-marker-alt"></i>
+                                                Malaysia
+                                            </li>
+                                        </ul>
                                     </div>
-                                    <div class="button-container">
-                                        <a href="#"><i class="far fa-edit"></i>Edit</a>
-                                        <a href="#"><i class="far fa-trash-alt"></i> Delete</a>
+                                    <div class="package-content">
+                                        <h3>
+                                            <a href="#" th:text="${tour.description}"></a>
+                                        </h3>
+                                        <div class="review-area">
+                                            <span class="review-text">(25 reviews)</span>
+                                            <div class="rating-start" title="Rated 5 out of 5">
+                                                <span style="width: 60%"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="btn-wrap">
+                                            <a href="#" class="button-text">Đặt ngay<i class="fas fa-arrow-right"></i></a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="grid-item col-md-6 col-lg-4">
-                        <div class="package-wrap">
-                            <figure class="feature-image">
-                                <a href="#">
-                                    <img src="" alt="">
-                                </a>
-                            </figure>
-                            <div class="package-price">
-                                <h6>
-                                    <span>$2,300 </span> / per person
-                                </h6>
-                            </div>
-                            <div class="package-content-wrap">
-                                <div class="package-content">
-                                    <h4>
-                                        <a href="#">Experience the natural beauty of island</a>
-                                    </h4>
-                                    <div class="content-details">
-                                        <div class="rating-start" title="Rated 5 out of 5">
-                                            <span></span>
-                                        </div>
-                                        <span class="review-text"><a href="#">1 review</a></span>
-                                    </div>
-                                    <div class="button-container">
-                                        <a href="#"><i class="far fa-edit"></i>Edit</a>
-                                        <a href="#"><i class="far fa-trash-alt"></i> Delete</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="grid-item col-md-6 col-lg-4">
-                        <div class="package-wrap">
-                            <figure class="feature-image">
-                                <a href="#">
-                                    <img src="" alt="">
-                                </a>
-                            </figure>
-                            <div class="package-price">
-                                <h6>
-                                    <span>$1,500 </span>
-                                </h6>
-                            </div>
-                            <div class="package-content-wrap">
-                                <div class="package-content">
-                                    <h4>
-                                        <a href="#">Vacation to the water city of Portugal</a>
-                                    </h4>
-                                    <div class="content-details">
-                                        <div class="rating-start" title="Rated 5 out of 5">
-                                            <span></span>
-                                        </div>
-                                        <span class="review-text"><a href="#">1 review</a></span>
-                                    </div>
-                                    <div class="button-container">
-                                        <a href="#"><i class="far fa-edit"></i>Edit</a>
-                                        <a href="#"><i class="far fa-trash-alt"></i> Delete</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </div>
+        </div>
             <!-- pagination html -->
             <div class="pagination-wrap">
                 <nav class="pagination-inner">
@@ -422,7 +203,7 @@
                     </ul>
                 </nav>
             </div>
-        </div>
+
     </main>
     <footer id="colophon" class="site-footer footer-primary">
         <div class="top-footer">
@@ -430,138 +211,47 @@
                 <div class="row">
                     <div class="col-lg-3 col-md-6">
                         <aside class="widget widget_text">
-                            <h3 class="widget-title">
-                                About Travel
-                            </h3>
-                            <div class="textwidget widget-text">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.
-                            </div>
                             <div class="award-img">
-                                <a href="#"><img src="" alt=""></a>
-                                <a href="#"><img src="" alt=""></a>
+                                <a href="#"><img th:src="|@{/images/}logo7.png|" alt=""></a>
+                                <a href="#"><img th:src="|@{/images/}logo5.png|" alt=""></a>
                             </div>
                         </aside>
                     </div>
                     <div class="col-lg-3 col-md-6">
                         <aside class="widget widget_text">
-                            <h3 class="widget-title">CONTACT INFORMATION</h3>
+                            <h3 class="widget-title">Về chúng tôi</h3>
                             <div class="textwidget widget-text">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                Travele
                                 <ul>
                                     <li>
                                         <a href="#">
                                             <i class="fas fa-phone-alt"></i>
-                                            +01 (977) 2599 12
+                                            0287777723
                                         </a>
                                     </li>
                                     <li>
                                         <a href="#">
                                             <i class="fas fa-envelope"></i>
-                                            <span class="__cf_email__" data-cfemail="8deee2e0fdece3f4cde9e2e0ece4e3a3eee2e0">[email&#160;protected]</span>
+                                            <span class="__cf_email__" data-cfemail="8deee2e0fdece3f4cde9e2e0ece4e3a3eee2e0">travele@gmail.com</span>
                                         </a>
                                     </li>
                                     <li>
                                         <i class="fas fa-map-marker-alt"></i>
-                                        3146  Koontz, California
+                                        462 Đường Bưởi , Vĩnh Phúc, Hà Nội
                                     </li>
                                 </ul>
                             </div>
                         </aside>
                     </div>
-                    <div class="col-lg-3 col-md-6">
-                        <aside class="widget widget_recent_post">
-                            <h3 class="widget-title">Latest Post</h3>
-                            <ul>
-                                <li>
-                                    <h5>
-                                        <a href="#">Life is a beautiful journey not a destination</a>
-                                    </h5>
-                                    <div class="entry-meta">
-                                    <span class="post-on">
-                                       <a href="#">August 17, 2021</a>
-                                    </span>
-                                        <span class="comments-link">
-                                       <a href="#">No Comments</a>
-                                    </span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <h5>
-                                        <a href="#">Take only memories, leave only footprints</a>
-                                    </h5>
-                                    <div class="entry-meta">
-                                    <span class="post-on">
-                                       <a href="#">August 17, 2021</a>
-                                    </span>
-                                        <span class="comments-link">
-                                       <a href="#">No Comments</a>
-                                    </span>
-                                    </div>
-                                </li>
-                            </ul>
-                        </aside>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <aside class="widget widget_newslatter">
-                            <h3 class="widget-title">SUBSCRIBE US</h3>
-                            <div class="widget-text">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            </div>
-                            <form class="newslatter-form">
-                                <input type="email" name="s" placeholder="Your Email..">
-                                <input type="submit" name="s" value="SUBSCRIBE NOW">
-                            </form>
-                        </aside>
-                    </div>
+
                 </div>
             </div>
         </div>
-        <div class="buttom-footer">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-md-5">
-                        <div class="footer-menu">
-                            <ul>
-                                <li>
-                                    <a href="#">Privacy Policy</a>
-                                </li>
-                                <li>
-                                    <a href="#">Term & Condition</a>
-                                </li>
-                                <li>
-                                    <a href="#">FAQ</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-2 text-center">
-                        <div class="footer-logo">
-                            <a href="#"><img src="" alt=""></a>
-                        </div>
-                    </div>
-                    <div class="col-md-5">
-                        <div class="copy-right text-right">Copyright © 2021 Travele. All rights reserveds</div>
-                    </div>
-                </div>
-            </div>
-        </div>
+
     </footer>
     <a id="backTotop" href="#" class="to-top-icon">
         <i class="fas fa-chevron-up"></i>
     </a>
-    <!-- custom search field html -->
-    <div class="header-search-form">
-        <div class="container">
-            <div class="header-search-container">
-                <form class="search-form" role="search" method="get" >
-                    <input type="text" name="s" placeholder="Enter your text...">
-                </form>
-                <a href="#" class="search-close">
-                    <i class="fas fa-times"></i>
-                </a>
-            </div>
-        </div>
-    </div>
     <!-- header html end -->
 </div>
 
