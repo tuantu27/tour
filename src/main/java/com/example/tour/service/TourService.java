@@ -2,6 +2,7 @@ package com.example.tour.service;
 
 import com.example.tour.entity.ToursEntity;
 import com.example.tour.model.dto.ToursDTO;
+import com.example.tour.repository.AccountRepository;
 import com.example.tour.repository.ITourRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,9 @@ public class TourService implements ITourService {
     @Autowired
     ITourRepository iTourRepository;
 
+    @Autowired
+    AccountRepository accountRepository;
+
 
     @Override
     public List<ToursDTO> getAll() {
@@ -24,5 +28,22 @@ public class TourService implements ITourService {
             toursDTOS.add(toursDTO);
         }
         return toursDTOS;
+    }
+
+    @Override
+    public Long saveTour(ToursDTO toursDTO) {
+        ToursEntity toursEntity = new ToursEntity();
+        toursEntity.setTourName(toursDTO.getTourName());
+        toursEntity.setDuration(toursDTO.getDuration());
+        toursEntity.setStartDate(toursDTO.getStartDate());
+        toursEntity.setImgName(toursDTO.getImgName());
+        toursEntity.setStatus(1);
+        toursEntity.setDescription(toursDTO.getDescription());
+        toursEntity.setPriceAdult(toursDTO.getPriceAdult());
+        toursEntity.setPriceChildren(toursDTO.getPriceChildren());
+        toursEntity.setPriceInfant(toursDTO.getPriceInfant());
+        toursEntity.setAccount(accountRepository.findById(toursDTO.getAccountsDTO().getAccountId()).get());
+        ToursEntity entity = iTourRepository.save(toursEntity);
+        return entity.getTourId();
     }
 }

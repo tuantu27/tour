@@ -12,7 +12,7 @@ import java.util.List;
 public class TypeTourDTO {
     private  Long typeTourId;
     private String nameTypeTour;
-    private String region; // 1 Mien Bac , 2 Mien Trung ,3 Mien Nam , 4 Tay Nguyen
+    private String region; // 1 Mien Bac , 2 Mien Trung ,3 Mien Nam
     private List<MultipleTypeTourDTO> multipleTypeTourDTOS;
 
 }

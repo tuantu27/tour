@@ -1,6 +1,7 @@
 package com.example.tour.service;
 
 import com.example.tour.entity.TypeTourEntity;
+import com.example.tour.model.dto.ToursDTO;
 import com.example.tour.model.dto.TypeTourDTO;
 import com.example.tour.repository.ITypeTourRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,5 +25,13 @@ public class TypeTourService implements ITypeTourService {
 
         }
         return typeTourDTOS;
+    }
+
+    @Override
+    public void saveTypeTour(TypeTourDTO typeTourDTO) {
+        TypeTourEntity typeTour = new TypeTourEntity();
+        typeTour.setNameTypeTour(typeTourDTO.getNameTypeTour());
+        typeTour.setRegion(typeTourDTO.getRegion());
+        iTypeTourRepository.save(typeTour);
     }
 }

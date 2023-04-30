@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface ITypeTourService {
     List<TypeTourDTO> getAll();
+    void saveTypeTour(TypeTourDTO typeTourDTO);
 }
