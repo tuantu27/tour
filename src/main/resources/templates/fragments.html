@@ -90,18 +90,10 @@
             <a class="dropdown-toggle" data-toggle="dropdown">
                 <div class="dropdown-item profile-sec">
                     <img th:src="|@{/admin_style/images/}comment.jpg|" alt="">
-                    <span>My Account </span>
-                    <i class="fas fa-caret-down"></i>
+                    <span th:text="${session.user.company.companyName}"> </span>
+
                 </div>
             </a>
-            <div class="dropdown-menu account-menu">
-                <ul>
-                    <li><a href="#"><i class="fas fa-cog"></i>Settings</a></li>
-                    <li><a href="#"><i class="fas fa-user-tie"></i>Profile</a></li>
-                    <li><a href="#"><i class="fas fa-key"></i>Password</a></li>
-                    <li><a href="#"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
-                </ul>
-            </div>
         </div>
     </div>
 </div>
@@ -112,6 +104,8 @@
         <ul>
             <li class="active-menu"><a th:href="@{'/subAdmin/home'}"><i class="far fa-chart-bar"></i>Dashboard</a></li>
             <li><a th:href="@{'/subAdmin/tour'}"><i class="fas fa-umbrella-beach"></i>Tour</a></li>
+            <li><a href="#"><i class="fas fa-user-tie"></i>Profile</a></li>
+            <li><a href="#"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
 
         </ul>
     </div>

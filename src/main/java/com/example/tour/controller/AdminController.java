@@ -11,7 +11,7 @@ public class AdminController {
 
     @GetMapping("/company")
     public String create() {
-        return "newTour";
+        return "admin";
     }
 
 }

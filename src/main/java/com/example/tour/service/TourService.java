@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TourService implements ITourService {
@@ -42,8 +43,15 @@ public class TourService implements ITourService {
         toursEntity.setPriceAdult(toursDTO.getPriceAdult());
         toursEntity.setPriceChildren(toursDTO.getPriceChildren());
         toursEntity.setPriceInfant(toursDTO.getPriceInfant());
-        toursEntity.setAccount(accountRepository.findById(toursDTO.getAccountsDTO().getAccountId()).get());
+        toursEntity.setAccount(accountRepository.findById(toursDTO.getAccountId()).get());
         ToursEntity entity = iTourRepository.save(toursEntity);
         return entity.getTourId();
+    }
+
+    @Override
+    public ToursDTO getById(Long tourId) {
+        Optional<ToursEntity> toursEntity = iTourRepository.findById(tourId);
+        ToursDTO toursDTO = toursEntity.get().toDto(toursEntity.get());
+        return toursDTO;
     }
 }

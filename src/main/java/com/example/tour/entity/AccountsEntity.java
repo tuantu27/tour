@@ -57,8 +57,6 @@ public class AccountsEntity {
         accountsDTO.setAccountId(accountsDTO.getAccountId());
         accountsDTO.setUserName(accountsEntity.getUsername());
         accountsDTO.setPassWord(accountsEntity.getPassword());
-        accountsDTO.setAvatar(accountsEntity.getAvatar());
-        accountsDTO.setEmail(accountsEntity.getEmail());
         //accountsDTO.setRoles(accountsEntity.getRoles());
         accountsDTO.setCreatedAt((Timestamp) accountsEntity.getCreateDate());
         accountsDTO.setUpdatedAt((Timestamp) accountsEntity.getUpdateDate());

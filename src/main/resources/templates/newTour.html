@@ -9,14 +9,16 @@
     <div id="dashboard" class="dashboard-container">
         <div th:replace="fragments :: nav_head"></div>
         <div th:replace="fragments :: menu"></div>
+
         <div class="db-info-wrap" style="position: relative">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="dashboard-box">
                         <h4>Thêm tour mới</h4>
-                        <form class="form-horizontal" th:action="@{subAdmin/saveTour}" method="post" enctype="multipart/form-data">
+                        <form class="form-horizontal" th:action="@{/subAdmin/saveTour}" method="post" enctype="multipart/form-data">
                             <div class="row" th:object="${tourDTO}">
                                 <input type="hidden" th:field="*{tourId}">
+
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Lộ trình chuyến đi</label>
@@ -110,7 +112,7 @@
                                                   background-color: rgb(0,0,0); /* Fallback color */
                                                   background-color: rgba(0,0,0,0.4);">
             <!-- Modal content -->
-            <form class="form-horizontal" th:action="@{subAdmin/saveTypeTour}" method="post">
+            <form class="form-horizontal" th:action="@{/subAdmin/saveTypeTour}" method="post">
                 <div class="modal-content" style="  background-color: #fefefe;
                                                   margin: auto;
                                                   padding: 20px;
@@ -150,6 +152,7 @@
 <script th:src="@{/admin_style/js/counterup.min.js}"></script>
 <script th:src="@{/admin_style/js/jquery.slicknav.js}"></script>
 <script th:src="@{/admin_style/js/dashboard-custom.js}"></script>
+<script th:src="@{/ckeditor5-build-classic/ckeditor.js}"></script>
 <script>
     $(document).ready(function () {
         $('#destination').selectize({
@@ -223,6 +226,7 @@
                 filebrowserFlashUploadUrl : '/ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Flash'
             });
 </script>
+
 
 </body>
 </html>

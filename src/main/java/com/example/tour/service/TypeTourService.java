@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TypeTourService implements ITypeTourService {
@@ -33,5 +34,15 @@ public class TypeTourService implements ITypeTourService {
         typeTour.setNameTypeTour(typeTourDTO.getNameTypeTour());
         typeTour.setRegion(typeTourDTO.getRegion());
         iTypeTourRepository.save(typeTour);
+    }
+
+    @Override
+    public TypeTourDTO getById(Long id) {
+        Optional<TypeTourEntity> typeTourEntityOptional = iTypeTourRepository.findById(id);
+        TypeTourDTO typeTourDTO = new TypeTourDTO();
+        typeTourDTO.setTypeTourId(typeTourEntityOptional.get().getTypeTourId());
+        typeTourDTO.setNameTypeTour(typeTourEntityOptional.get().getNameTypeTour());
+        typeTourDTO.setRegion(typeTourEntityOptional.get().getRegion());
+        return  typeTourDTO;
     }
 }

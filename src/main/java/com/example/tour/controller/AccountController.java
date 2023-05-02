@@ -31,6 +31,7 @@ public class AccountController {
             RoleEntity role = new RoleEntity();
             role.setUser(user1);
             if("SubAdmin".equals(roles)){
+
                 role.setRole("SubAdmin");
             }else if("Admin".equals(roles)){
                 role.setRole("Admin");

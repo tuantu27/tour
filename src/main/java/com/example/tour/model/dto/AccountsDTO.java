@@ -20,8 +20,6 @@ public class AccountsDTO {
     private Long accountId;
     private String userName;
     private String passWord;
-    private String avatar;
-    private String email;
     private List<RolesDTO> roles;
     private Timestamp createdAt;
     private Timestamp updatedAt;

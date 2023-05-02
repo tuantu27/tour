@@ -57,16 +57,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter   {
                         "/vendors/lightbox.dist/js/**","/vendors/masonry/**","/vendors/modal-video/**",
                         "/vendors/slick/**","/vendors/slick/fonts/**", "/admin_style/css/**","/admin_style/js/**","/admin_style/images/**",
                         "/admin_style/webfonts/**","/ckfinder/**","/ckeditor/**").permitAll()
-//                .antMatchers("/admin/**").hasAnyAuthority("Admin")
-//                .antMatchers("/account/**").hasAnyAuthority("Admin")
-//                .antMatchers("/subAdmin/**").hasAnyAuthority("SubAdmin")
+                .antMatchers("/admin/**").hasAnyAuthority("Admin")
+                .antMatchers("/account/**").hasAnyAuthority("Admin")
+                .antMatchers("/subAdmin/**").hasAnyAuthority("SubAdmin")
                 // Chỉ cần đăng nhập là có thể vào /...
                 .anyRequest().permitAll().and()
                 .csrf().disable()
                 .formLogin()
                 .loginPage("/login")
                 .successForwardUrl("/login?err=true")
-                .successHandler(loginSuccessHandler)
+               // .successHandler(loginSuccessHandler)
                 .and().logout()
                 .logoutSuccessUrl("/login")
                 .invalidateHttpSession(true)

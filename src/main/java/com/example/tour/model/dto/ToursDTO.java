@@ -22,7 +22,9 @@ public class ToursDTO {
     private String formatPrice;
     private Long priceInfant;
     private int status;
+    private Long accountId;
     private AccountsDTO accountsDTO;
+
     private List<ReviewsDTO> reviewsDTOS;
     private List<BookingDTO> bookingDTOS;
     private List<MultipleTypeTourDTO> multipleTypeTourDTOS;

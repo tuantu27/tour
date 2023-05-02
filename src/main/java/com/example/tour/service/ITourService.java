@@ -7,6 +7,7 @@ import java.util.List;
 public interface ITourService {
     List<ToursDTO> getAll();
     Long saveTour(ToursDTO toursDTO);
+    ToursDTO getById(Long tourId);
 
 
 }
