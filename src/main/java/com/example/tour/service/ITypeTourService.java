@@ -8,5 +8,6 @@ import java.util.List;
 public interface ITypeTourService {
     List<TypeTourDTO> getAll();
     void saveTypeTour(TypeTourDTO typeTourDTO);
+    List<TypeTourDTO> getLstByTourId(Long tourId);
     TypeTourDTO getById(Long id);
 }

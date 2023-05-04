@@ -13,6 +13,7 @@ public class TypeTourDTO {
     private  Long typeTourId;
     private String nameTypeTour;
     private String region; // 1 Mien Bac , 2 Mien Trung ,3 Mien Nam
+    private Long multipleId;
     private List<MultipleTypeTourDTO> multipleTypeTourDTOS;
 
 }

@@ -68,7 +68,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter   {
                 .successForwardUrl("/login?err=true")
                // .successHandler(loginSuccessHandler)
                 .and().logout()
-                .logoutSuccessUrl("/login")
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/home")
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID")
                 .and().httpBasic()
@@ -80,7 +81,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter   {
 
     }
 
-
+    @Bean
+    @Override
+    protected UserDetailsService userDetailsService() {
+        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
+        manager.createUser(
+                User.withDefaultPasswordEncoder()
+                        .username("dinhtu")
+                        .password("12345")
+                        .roles("Admin")
+                        .build());
+        return manager;
+    }
 
 
 }

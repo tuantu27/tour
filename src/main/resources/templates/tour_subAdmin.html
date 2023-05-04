@@ -16,84 +16,24 @@
                     <table class="table">
                         <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Date</th>
-                            <th>Destination</th>
-                            <th>status</th>
-                            <th>action</th>
+                            <th>Tên Chuyến Đi</th>
+                            <th>Ngày Bắt Đầu </th>
+                            <th>Địa Điểm Khởi Hành </th>
+                            <th>Khoảng Thời Gian </th>
+                            <th>Điều Chỉnh</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
+                        <tr th:each="tour : ${lstTour}">
                             <td>
-                                </span><span class="package-name">Singapore Holiday Tour</span>
+                                <span class="package-name" style="font-size: 14px" th:text="${tour.tourName}"></span>
                             </td>
-                            <td>12 may</td>
-                            <td>Japan</td>
-                            <td><span class="badge badge-success">Active</span></td>
+                            <td th:text="${tour.startDate}" style="font-size: 14px"></td>
+                            <td th:text="${tour.startDes}" style="font-size: 14px"></td>
+                            <td th:text="${tour.duration}" style="font-size: 14px"></td>
                             <td>
-                                <span class="badge badge-success"><i class="far fa-edit"></i></span>
-                                <span class="badge badge-danger"><i class="far fa-trash-alt"></i></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                </span><span class="package-name">New Year‘s Eve in Paris</span>
-                            </td>
-                            <td>12 may</td>
-                            <td>Japan</td>
-                            <td><span class="badge badge-success">Active</span></td>
-                            <td>
-                                <span class="badge badge-success"><i class="far fa-edit"></i></span>
-                                <span class="badge badge-danger"><i class="far fa-trash-alt"></i></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                </span><span class="package-name">Paris Honeymoon Tour</span>
-                            </td>
-                            <td>12 may</td>
-                            <td>Japan</td>
-                            <td><span class="badge badge-success">Active</span></td>
-                            <td>
-                                <span class="badge badge-success"><i class="far fa-edit"></i></span>
-                                <span class="badge badge-danger"><i class="far fa-trash-alt"></i></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                </span><span class="package-name">Japan Holiday Tour</span>
-                            </td>
-                            <td>12 may</td>
-                            <td>Japan</td>
-                            <td><span class="badge badge-success">Active</span></td>
-                            <td>
-                                <span class="badge badge-success"><i class="far fa-edit"></i></span>
-                                <span class="badge badge-danger"><i class="far fa-trash-alt"></i></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                </span><span class="package-name">California Trip</span>
-                            </td>
-                            <td>12 may</td>
-                            <td>Japan</td>
-                            <td><span class="badge badge-success">Active</span></td>
-                            <td>
-                                <span class="badge badge-success"><i class="far fa-edit"></i></span>
-                                <span class="badge badge-danger"><i class="far fa-trash-alt"></i></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                </span><span class="package-name">Dubai Tour</span>
-                            </td>
-                            <td>12 may</td>
-                            <td>Japan</td>
-                            <td><span class="badge badge-success">Active</span></td>
-                            <td>
-                                <span class="badge badge-success"><i class="far fa-edit"></i></span>
-                                <span class="badge badge-danger"><i class="far fa-trash-alt"></i></span>
+                                <a style="font-size: 14px;color:white"  th:href="@{'/subAdmin/edit-Tour/' + ${tour.tourId}}" class="badge badge-success"><i class="far fa-edit"></i></a>
+                                <a style="font-size: 14px;color: white"  th:href="@{'/subAdmin/delete-Tour/' + ${tour.tourId}}" class="badge badge-danger"><i class="far fa-trash-alt"></i></a>
                             </td>
                         </tr>
                         </tbody>

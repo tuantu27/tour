@@ -13,8 +13,11 @@ import java.util.List;
 public class CompanysDTO {
     private Long companyId;
     private String companyName;
+    private String companyCode;
     private String address;
     private String email;
+    private int status;
+    private Long accountId;
     private AccountsDTO accountsDTO;
     private List<PaymentsDTO> paymentsDTOS;
 }

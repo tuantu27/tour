@@ -20,4 +20,22 @@ public class AccountService implements IAccountService {
         accountsDTO.setUserName(accountsEntity.getUsername());
         return accountsDTO;
     }
+
+    @Override
+    public AccountsDTO getByCompanyId(Long companyId) {
+        AccountsEntity accountsEntity = accountRepository.getAccountsEntitiesByCompany_CompanyId(companyId);
+        AccountsDTO accountsDTO = new AccountsDTO();
+        accountsDTO.setAccountId(accountsEntity.getAccountId());
+        accountsDTO.setUserName(accountsEntity.getUsername());
+        accountsDTO.setStatus(accountsEntity.getStatus());
+        return accountsDTO;
+    }
+
+    @Override
+    public void updateAccount(AccountsDTO accountsDTO) {
+        AccountsEntity accountsEntity = accountRepository.findById(accountsDTO.getAccountId()).get();
+        accountsEntity.setAccountId(accountsDTO.getAccountId());
+        accountsEntity.setStatus(accountsDTO.getStatus());
+        accountsEntity.setPassword(accountsDTO.getPassWord());
+    }
 }

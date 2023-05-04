@@ -1,6 +1,7 @@
 package com.example.tour.entity;
 
 
+import com.example.tour.model.dto.MultipleTypeTourDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,5 +26,11 @@ public class MultipleTypeTourEntity {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "typeTourId")
     private TypeTourEntity typeTour;
+
+    public static MultipleTypeTourDTO toDto(MultipleTypeTourEntity mul){
+        MultipleTypeTourDTO mulDto = new MultipleTypeTourDTO();
+        mulDto.setMultipleTypeTourId(mul.getMultipleTypeTourId());
+        return mulDto;
+    }
 
 }

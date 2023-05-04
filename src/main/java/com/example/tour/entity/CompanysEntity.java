@@ -18,10 +18,11 @@ public class CompanysEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long companyId;
-
+    private String companyCode;
     private String companyName;
     private String address;
     private String email;
+    private int status;
 
     @OneToOne(mappedBy = "company")
     private AccountsEntity accountsEntity;

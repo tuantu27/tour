@@ -9,6 +9,8 @@ import java.util.List;
 
 @Repository
 public interface ITourRepository extends JpaRepository<ToursEntity,Long> {
+    List<ToursEntity> getToursEntitiesByAccount_AccountIdAndStatus(Long accountId,int status);
+
 
 
 }

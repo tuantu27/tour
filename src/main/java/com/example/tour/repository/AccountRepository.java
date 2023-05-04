@@ -13,4 +13,6 @@ public interface AccountRepository extends JpaRepository<AccountsEntity,Long> {
     @Query("SELECT a FROM AccountsEntity a WHERE a.username LIKE :x ")
     Page<AccountsEntity> searchByUsername(@Param("x") String s, Pageable pageable);
     AccountsEntity findByUsername(String username);
+
+    AccountsEntity getAccountsEntitiesByCompany_CompanyId(Long companyId);
 }

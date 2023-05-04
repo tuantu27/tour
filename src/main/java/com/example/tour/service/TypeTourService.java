@@ -1,6 +1,7 @@
 package com.example.tour.service;
 
 import com.example.tour.entity.TypeTourEntity;
+import com.example.tour.model.dto.MultipleTypeTourDTO;
 import com.example.tour.model.dto.ToursDTO;
 import com.example.tour.model.dto.TypeTourDTO;
 import com.example.tour.repository.ITypeTourRepository;
@@ -34,6 +35,20 @@ public class TypeTourService implements ITypeTourService {
         typeTour.setNameTypeTour(typeTourDTO.getNameTypeTour());
         typeTour.setRegion(typeTourDTO.getRegion());
         iTypeTourRepository.save(typeTour);
+    }
+
+    @Override
+    public List<TypeTourDTO> getLstByTourId(Long tourId) {
+        List<TypeTourEntity> typeTourEntities = iTypeTourRepository.getTypeTourByTourId(tourId);
+        List<TypeTourDTO> typeTourDTOS = new ArrayList<>();
+        for (TypeTourEntity tour : typeTourEntities) {
+            TypeTourDTO typeTourDTO = new TypeTourDTO();
+            typeTourDTO.setNameTypeTour(tour.getNameTypeTour());
+            typeTourDTO.setTypeTourId(tour.getTypeTourId());
+            typeTourDTO.setRegion(tour.getRegion());
+            typeTourDTOS.add(typeTourDTO);
+        }
+        return typeTourDTOS;
     }
 
     @Override

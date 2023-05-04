@@ -23,6 +23,7 @@ public class AccountsDTO {
     private List<RolesDTO> roles;
     private Timestamp createdAt;
     private Timestamp updatedAt;
+    private int status;
     private List<ToursDTO> toursDTOS;
     private CompanysDTO companysDTO;
     private List<RolesDTO> rolesDTOS;

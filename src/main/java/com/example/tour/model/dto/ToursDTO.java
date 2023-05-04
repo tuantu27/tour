@@ -21,6 +21,7 @@ public class ToursDTO {
     private Long priceChildren;
     private String formatPrice;
     private Long priceInfant;
+    private String startDes;
     private int status;
     private Long accountId;
     private AccountsDTO accountsDTO;

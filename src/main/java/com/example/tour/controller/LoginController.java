@@ -42,10 +42,11 @@ public class LoginController {
         String redirectURL = request.getContextPath();
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         for (int i =0 ; i< users.size();i++) {
-            if (users.get(i).getUsername().equals(username) && encoder.matches(password,users.get(i).getPassword())) {
+            if (users.get(i).getUsername().equals(username) && encoder.matches(password,users.get(i).getPassword())
+                    && 1==(users.get(i).getStatus()) ) {
                 for (RoleEntity role : users.get(i).getRoles()) {
                     if (role.getRole().equals("SubAdmin")) {
-                        redirectURL = "/subAdmin/home";
+                        redirectURL = "/subAdmin/tour";
                     } else if (role.getRole().equals("Admin")) {
                         redirectURL = "/admin/company";
                     }

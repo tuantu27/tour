@@ -49,9 +49,43 @@ public class TourService implements ITourService {
     }
 
     @Override
+    public void updateTour(ToursDTO toursDTO) {
+        ToursEntity toursEntity = iTourRepository.findById(toursDTO.getTourId()).get();
+        toursEntity.setTourName(toursDTO.getTourName());
+        toursEntity.setDuration(toursDTO.getDuration());
+        toursEntity.setStartDate(toursDTO.getStartDate());
+        toursEntity.setImgName(toursDTO.getImgName());
+        toursEntity.setStatus(1);
+        toursEntity.setDescription(toursDTO.getDescription());
+        toursEntity.setPriceAdult(toursDTO.getPriceAdult());
+        toursEntity.setPriceChildren(toursDTO.getPriceChildren());
+        toursEntity.setPriceInfant(toursDTO.getPriceInfant());
+        toursEntity.setAccount(accountRepository.findById(toursDTO.getAccountId()).get());
+        iTourRepository.save(toursEntity);
+    }
+
+    @Override
+    public void deleteTour(Long id) {
+        ToursEntity toursEntity = iTourRepository.findById(id).get();
+        toursEntity.setStatus(0);
+        iTourRepository.save(toursEntity);
+    }
+
+    @Override
     public ToursDTO getById(Long tourId) {
         Optional<ToursEntity> toursEntity = iTourRepository.findById(tourId);
         ToursDTO toursDTO = toursEntity.get().toDto(toursEntity.get());
         return toursDTO;
+    }
+
+    @Override
+    public List<ToursDTO> getToursByAccountId(Long accountId) {
+        List<ToursEntity> toursEntityList = iTourRepository.getToursEntitiesByAccount_AccountIdAndStatus(accountId,1);
+        List<ToursDTO> toursDTOS = new ArrayList<>();
+        for(ToursEntity toursEntity : toursEntityList){
+            ToursDTO toursDTO = toursEntity.toDto(toursEntity);
+            toursDTOS.add(toursDTO);
+        }
+        return toursDTOS;
     }
 }

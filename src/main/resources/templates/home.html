@@ -121,7 +121,7 @@
                                             <div class="input-group width-col-1">
                                                 <label> Ngày khởi hành </label>
                                                 <i class="far fa-calendar"></i>
-                                                <input class="input-date-picker" type="text" name="s" placeholder="MM / DD / YY" autocomplete="off" >
+                                                <input class="input-date-picker" type="text" name="s" placeholder="DD / MM / YY" autocomplete="off" >
                                             </div>
                                             <div class="input-group width-col-1">
                                                 <label class="screen-reader-text"> Tìm kiếm </label>
@@ -133,6 +133,7 @@
                                 <!-- search search field html end -->
                             </div>
                         </div>
+
                     </div>
                 </div>
                 <div class="overlay"></div>
@@ -163,15 +164,19 @@
                                                 7D/6N
                                             </li>
 
-                                            <li th:text="${tour.tourName}">
-                                                <i class="fas fa-map-marker-alt"></i>
+                                            <li th:text="'Khởi Hành Tại : '+ ${tour.startDes}">
+<!--                                                <i class="fas fa-map-marker-alt"></i>-->
+                                                Malaysia
+                                            </li>
+                                            <li th:text="'Ngày Bắt Đầu : '+ ${tour.startDate}" style="margin-top: 5px">
+<!--                                                <i class="fas fa-map-marker-alt"></i>-->
                                                 Malaysia
                                             </li>
                                         </ul>
                                     </div>
                                     <div class="package-content">
                                         <h3>
-                                            <a href="#" th:text="${tour.description}"></a>
+                                            <a href="#" th:text="${tour.tourName}"></a>
                                         </h3>
                                         <div class="review-area">
                                             <span class="review-text">(25 reviews)</span>

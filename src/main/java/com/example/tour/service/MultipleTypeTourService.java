@@ -28,4 +28,17 @@ public class MultipleTypeTourService implements IMultipleTypeTourService {
         multipleTypeTourEntity.setTypeTour(iTypeTourRepository.findById(multipleTypeTourDTO.getTypeTourDTO().getTypeTourId()).get());
         iMultipleTypeTourRepository.save(multipleTypeTourEntity);
     }
+
+    @Override
+    public void updateMultipleTT(MultipleTypeTourDTO multipleTypeTourDTO) {
+        MultipleTypeTourEntity multipleTypeTourEntity = iMultipleTypeTourRepository.findById(multipleTypeTourDTO.getMultipleTypeTourId()).get();
+        multipleTypeTourEntity.setTour(iTourRepository.findById(multipleTypeTourDTO.getToursDTO().getTourId()).get());
+        multipleTypeTourEntity.setTypeTour(iTypeTourRepository.findById(multipleTypeTourDTO.getTypeTourDTO().getTypeTourId()).get());
+        iMultipleTypeTourRepository.save(multipleTypeTourEntity);
+    }
+
+    @Override
+    public void deleteMultipleTT(Long tourId, Long typeTourId) {
+        iMultipleTypeTourRepository.deleteMultipleTT(tourId,typeTourId);
+    }
 }

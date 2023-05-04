@@ -35,8 +35,8 @@
         <div class="search-field">
             <form>
                 <div class="form-group">
-<!--                    <input type="text" class="form-control" id="search" placeholder="Search Now">-->
-<!--                    <a href="#"><span class="search_btn"><i class="fa fa-search" aria-hidden="true"></i></span></a>-->
+                    <!--                    <input type="text" class="form-control" id="search" placeholder="Search Now">-->
+                    <!--                    <a href="#"><span class="search_btn"><i class="fa fa-search" aria-hidden="true"></i></span></a>-->
                 </div>
             </form>
         </div>
@@ -91,7 +91,7 @@
             <a class="dropdown-toggle" data-toggle="dropdown">
                 <div class="dropdown-item profile-sec">
                     <img th:src="|@{/admin_style/images/}comment.jpg|" alt="">
-                    <span th:text="${session.user.company.companyName}"> </span>
+                    <span th:text="${session.user.username}"> </span>
 
                 </div>
             </a>
@@ -103,9 +103,11 @@
     <div id="dashboard-Navigation" class="slick-nav"></div>
     <div id="navigation" class="navigation-container">
         <ul>
-<!--            <li class="active-menu"><a th:href="@{'/subAdmin/home'}"><i class="far fa-chart-bar"></i>Dashboard</a></li>-->
-            <li><a th:href="@{'/subAdmin/tour'}"><i class="fas fa-umbrella-beach"></i>Danh sách chuyến đi</a></li>
-            <li><a  th:href="@{'/subAdmin/edit-Profile/' + ${session.user.company.companyId}}"><i class="fas fa-user-tie"></i>Thông tin công ty</a></li>
+            <!--            <li class="active-menu"><a th:href="@{'/subAdmin/home'}"><i class="far fa-chart-bar"></i>Dashboard</a></li>-->
+            <li><a th:href="@{'/admin/company'}"><i class="fa-solid fa-users"></i>Danh sách công ty</a></li>
+<!--            <li><a  th:href="@{'/subAdmin/edit-Profile/' + ${session.user.company.companyId}}"><i class="fas fa-user-tie"></i>Thông tin công ty</a></li>-->
+<!--            <li><a th:href="@{'/account/create'}"><i class="fas fa-sign-out-alt"></i>Đăng kí tài</a></li>-->
+            <li><a th:href="@{'/account/create'}"><i class="fa-solid fa-circle-plus"></i>Đăng kí tài khoản</a></li>
             <li><a th:href="@{'/logout'}"><i class="fas fa-sign-out-alt"></i>Đăng xuất</a></li>
 
         </ul>

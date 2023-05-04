@@ -41,6 +41,7 @@ public class AccountsEntity {
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date updateDate;
 
+    private int status;
     @OneToMany(mappedBy = "account")
     private List<ToursEntity> toursEntityList;
 

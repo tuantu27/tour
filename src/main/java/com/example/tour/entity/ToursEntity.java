@@ -30,6 +30,7 @@ public class ToursEntity {
     private String imgName;
     private Long priceAdult;
     private Long priceChildren;
+    private String startDes;
     private Long priceInfant;
     private int status;
 
@@ -57,6 +58,7 @@ public class ToursEntity {
         toursDTO.setDescription(toursEntity.getDescription());
         toursDTO.setImgName(toursEntity.getImgName());
         toursDTO.setPriceAdult(toursEntity.getPriceAdult());
+        toursDTO.setStartDes(toursEntity.getStartDes());
         toursDTO.setPriceChildren(toursEntity.getPriceChildren());
         toursDTO.setPriceInfant(toursEntity.getPriceInfant());
         toursDTO.setStatus(toursEntity.getStatus());
