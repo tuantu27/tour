@@ -14,4 +14,6 @@ public interface IMultipleTypeTourRepository extends JpaRepository<MultipleTypeT
     @Transactional
     @Query(value = "DELETE from multiple_type_tour a where a.tour_id=:tourId and a.type_tour_id=:typeTourId",nativeQuery = true)
     void deleteMultipleTT(@Param("tourId") Long tourId,@Param("typeTourId") Long typeTourId);
+
+
 }

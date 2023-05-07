@@ -81,7 +81,7 @@ public class SubAdminController {
             iMultipleTypeTourService.saveMultipleTT(temp);
         }
 
-        return "tour_subAdmin";
+        return "redirect:/subAdmin/tour";
     }
     @PostMapping("/saveTypeTour")
     public String saveTypeTour(@ModelAttribute("typeTourDTO")TypeTourDTO typeTourDTO){
@@ -104,37 +104,40 @@ public class SubAdminController {
     }
     @PostMapping("/updateTour")
     public String updateTour(@ModelAttribute("tourDTO")ToursDTO toursDTO,@RequestParam("newImage") MultipartFile file
-            ,@RequestParam("destination")Long[] lstTypeTourId,HttpSession session){
+            ,@RequestParam(value = "destination",required = false)Long[] lstTypeTourId,HttpSession session){
         AccountsEntity accountsEntity = (AccountsEntity) session.getAttribute("user");
         toursDTO.setAccountId(accountsEntity.getAccountId());
         String nameFile = mvcConfig.uploadImages(file);
         toursDTO.setImgName(nameFile);
         iTourService.updateTour(toursDTO);
         Long[] arrTypeTourId = lstTypeTourId;
-        List arr = Arrays.asList(arrTypeTourId);
-        List<TypeTourDTO> lstCurTypeTour = iTypeTourService.getLstByTourId(toursDTO.getTourId());
-        List currArrId = new ArrayList<>();
-        //xoa cac destination khong duoc select
-        for(int i =0 ; i<lstCurTypeTour.size();i++){
-            if(arr.contains(lstCurTypeTour.get(i).getTypeTourId())){
-                currArrId.add(lstCurTypeTour.get(i).getTypeTourId());
-                continue;
-            }else if(!arr.contains(lstCurTypeTour.get(i).getTypeTourId())) {
+        if(arrTypeTourId.length > 0){
+            List arr = Arrays.asList(arrTypeTourId);
+            List<TypeTourDTO> lstCurTypeTour = iTypeTourService.getLstByTourId(toursDTO.getTourId());
+            List currArrId = new ArrayList<>();
+            //xoa cac destination khong duoc select
+            for(int i =0 ; i<lstCurTypeTour.size();i++){
+                if(arr.contains(lstCurTypeTour.get(i).getTypeTourId())){
+                    currArrId.add(lstCurTypeTour.get(i).getTypeTourId());
+                    continue;
+                }else if(!arr.contains(lstCurTypeTour.get(i).getTypeTourId())) {
 
-                Long currTT =lstCurTypeTour.get(i).getTypeTourId();
-                iMultipleTypeTourService.deleteMultipleTT(toursDTO.getTourId(),currTT);
+                    Long currTT =lstCurTypeTour.get(i).getTypeTourId();
+                    iMultipleTypeTourService.deleteMultipleTT(toursDTO.getTourId(),currTT);
+                }
+            }
+            //them cac destination moi
+            for(int j = 0 ;j<arr.size()-1;j++){
+                if(!currArrId.contains(arr.get(j+1))){
+                    MultipleTypeTourDTO temp = new MultipleTypeTourDTO();
+                    temp.setToursDTO(toursDTO);
+                    temp.setTypeTourDTO(iTypeTourService.getById((Long)arr.get(j+1)));
+                    iMultipleTypeTourService.saveMultipleTT(temp);
+                }
+
             }
         }
-        //them cac destination moi
-        for(int j = 0 ;j<arr.size();j++){
-            if(!currArrId.contains(arr.get(j))){
-                MultipleTypeTourDTO temp = new MultipleTypeTourDTO();
-                temp.setToursDTO(toursDTO);
-                temp.setTypeTourDTO(iTypeTourService.getById((Long)arr.get(j)));
-                iMultipleTypeTourService.saveMultipleTT(temp);
-            }
 
-        }
         return "redirect:/subAdmin/tour";
     }
 
@@ -161,5 +164,12 @@ public class SubAdminController {
 
     }
 
+    @GetMapping(value = "/review-Tour/{id}")
+    public String reviewTour(Model model,@PathVariable("id") Long id){
+        ToursDTO toursDTO = iTourService.getById(id);
+        model.addAttribute("toursDTO",toursDTO);
+        return "reviewTour";
+
+    }
 
 }

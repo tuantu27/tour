@@ -57,7 +57,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-sm-6">
+                                <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Chọn địa điểm tour</label>
                                         <select name="destination" id="destination" multiple="multiple">
@@ -66,13 +66,19 @@
 
                                     </div>
                                 </div>
-                                <div class="col-sm-1" >
+                                <div class="col-sm-2" style="top: 40px;" >
                                     <div class="form-group">
-                                      <a id="myBtn" style="cursor: pointer"> <i class="fa-solid fa-circle-plus" style="font-size: 17px" ></i>Thêm loại tour</a>
+                                      <a id="myBtn" style="cursor: pointer"> <i class="fa-solid fa-circle-plus" style="font-size: 17px" ></i>Thêm địa điểm tour</a>
                                     </div>
 
                                 </div>
-                                <div class="col-sm-5">
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <label>Địa điểm khởi hành</label>
+                                        <input  th:field="*{startDes}" class="form-control" type="text">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Ảnh đại diện</label>
                                         <img id="blah" title="profile image" class="img-circle img-responsive " style="width: 50%;height: 15%" th:src="|@{/images_data/}${tourDTO.imgName}|">

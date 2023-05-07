@@ -12,5 +12,11 @@ public interface ITourService {
     ToursDTO getById(Long tourId);
     List<ToursDTO> getToursByAccountId(Long accountId);
 
+    List<ToursDTO> getLstByTypeTourId(Long typeTourId);
+
+    List<ToursDTO> getTourByNameAndDate(String name,String date);
+    List<ToursDTO> getTourByName(String name);
+
+
 
 }

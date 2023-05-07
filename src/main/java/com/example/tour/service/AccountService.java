@@ -2,9 +2,12 @@ package com.example.tour.service;
 
 import com.example.tour.entity.AccountsEntity;
 import com.example.tour.model.dto.AccountsDTO;
+import com.example.tour.model.dto.CompanysDTO;
 import com.example.tour.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class AccountService implements IAccountService {
@@ -38,4 +41,6 @@ public class AccountService implements IAccountService {
         accountsEntity.setStatus(accountsDTO.getStatus());
         accountsEntity.setPassword(accountsDTO.getPassWord());
     }
+
+
 }

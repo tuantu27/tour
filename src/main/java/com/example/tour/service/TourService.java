@@ -37,6 +37,7 @@ public class TourService implements ITourService {
         toursEntity.setTourName(toursDTO.getTourName());
         toursEntity.setDuration(toursDTO.getDuration());
         toursEntity.setStartDate(toursDTO.getStartDate());
+        toursEntity.setStartDes(toursDTO.getStartDes());
         toursEntity.setImgName(toursDTO.getImgName());
         toursEntity.setStatus(1);
         toursEntity.setDescription(toursDTO.getDescription());
@@ -54,6 +55,7 @@ public class TourService implements ITourService {
         toursEntity.setTourName(toursDTO.getTourName());
         toursEntity.setDuration(toursDTO.getDuration());
         toursEntity.setStartDate(toursDTO.getStartDate());
+        toursEntity.setStartDes(toursDTO.getStartDes());
         toursEntity.setImgName(toursDTO.getImgName());
         toursEntity.setStatus(1);
         toursEntity.setDescription(toursDTO.getDescription());
@@ -81,6 +83,39 @@ public class TourService implements ITourService {
     @Override
     public List<ToursDTO> getToursByAccountId(Long accountId) {
         List<ToursEntity> toursEntityList = iTourRepository.getToursEntitiesByAccount_AccountIdAndStatus(accountId,1);
+        List<ToursDTO> toursDTOS = new ArrayList<>();
+        for(ToursEntity toursEntity : toursEntityList){
+            ToursDTO toursDTO = toursEntity.toDto(toursEntity);
+            toursDTOS.add(toursDTO);
+        }
+        return toursDTOS;
+    }
+
+    @Override
+    public List<ToursDTO> getLstByTypeTourId(Long typeTourId) {
+        List<ToursEntity> toursEntityList = iTourRepository.getTourByTypeTourId(typeTourId);
+        List<ToursDTO> toursDTOS = new ArrayList<>();
+        for(ToursEntity toursEntity : toursEntityList){
+            ToursDTO toursDTO = toursEntity.toDto(toursEntity);
+            toursDTOS.add(toursDTO);
+        }
+        return toursDTOS;
+    }
+
+    @Override
+    public List<ToursDTO> getTourByNameAndDate(String name, String date) {
+        List<ToursEntity> toursEntityList = iTourRepository.getTourByNameAndDate(name,date);
+        List<ToursDTO> toursDTOS = new ArrayList<>();
+        for(ToursEntity toursEntity : toursEntityList){
+            ToursDTO toursDTO = toursEntity.toDto(toursEntity);
+            toursDTOS.add(toursDTO);
+        }
+        return toursDTOS;
+    }
+
+    @Override
+    public List<ToursDTO> getTourByName(String name) {
+        List<ToursEntity> toursEntityList = iTourRepository.getTourByName(name);
         List<ToursDTO> toursDTOS = new ArrayList<>();
         for(ToursEntity toursEntity : toursEntityList){
             ToursDTO toursDTO = toursEntity.toDto(toursEntity);

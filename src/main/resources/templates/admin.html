@@ -11,7 +11,21 @@
         <div class="db-info-wrap db-package-wrap">
             <div class="dashboard-box table-opp-color-box">
                 <h4>Danh Sách Tour</h4>
-                <a th:href="@{'/admin/new-company'}" style="font-size: 17px"><i class="fa-solid fa-circle-plus" ></i>Đăng kí công ty mới</a>
+                <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <a th:href="@{'/admin/new-company'}" style="font-size: 17px"><i class="fa-solid fa-circle-plus" ></i>Đăng kí công ty mới</a>
+                            </div>
+                            <div class="col-lg-6">
+                                <input style="border: 2px solid black;" type="text" class="form-control" id="search" placeholder="Tìm kiếm công ty"  >
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
@@ -37,17 +51,12 @@
                                     <option value="1" th:selected="(${company.status} =='1')">Hoạt Động</option>
                                     <option value="0" th:selected="(${company.status} =='0')">Chưa Hoạt Động</option>
                                 </select>
-<!--                                <a style="font-size: 14px;color:white"  th:href="@{'/subAdmin/edit-Tour/' + ${tour.tourId}}" class="badge badge-success"><i class="far fa-edit"></i></a>-->
-<!--                                <a style="font-size: 14px;color: white"  th:href="@{'/subAdmin/delete-Tour/' + ${tour.tourId}}" class="badge badge-danger"><i class="far fa-trash-alt"></i></a>
-<a th:href="@{'/admin/active-company/1/' + ${company.companyId}}">-->
+
                             </td>
                             <td th:if="${company.accountId} == '-1'" >
                                 <select name="status" style="background-color:#b3b3b3">
                                     <option value="0" selected="selected" >Chưa Hoạt Động</option>
                                 </select>
-                                <!--                                <a style="font-size: 14px;color:white"  th:href="@{'/subAdmin/edit-Tour/' + ${tour.tourId}}" class="badge badge-success"><i class="far fa-edit"></i></a>-->
-                                <!--                                <a style="font-size: 14px;color: white"  th:href="@{'/subAdmin/delete-Tour/' + ${tour.tourId}}" class="badge badge-danger"><i class="far fa-trash-alt"></i></a>
-                                <a th:href="@{'/admin/active-company/1/' + ${company.companyId}}">-->
                             </td>
                         </tr>
                         </tbody>
@@ -68,18 +77,30 @@
         </div>
     </div>
 </div>
-<script th:src="@{admin_style/js/jquery-3.2.1.min.js}"></script>
+<script th:src="@{/admin_style/js/jquery-3.2.1.min.js}"></script>
 <script src="../../../../cdn.jsdelivr.net/npm/popper.js%401.16.0/dist/umd/popper.min.js"></script>
-<script th:src="@{admin_style/js/bootstrap.min.js}"></script>
-<script th:src="@{admin_style/js/canvasjs.min.js}"></script>
-<script th:src="@{admin_style/js/chart.js}"></script>
-<script th:src="@{admin_style/js/counterup.min.js}"></script>
-<script th:src="@{admin_style/js/jquery.slicknav.js}"></script>
-<script th:src="@{admin_style/js/dashboard-custom.js}"></script>
+<script th:src="@{/admin_style/js/bootstrap.min.js}"></script>
+<script th:src="@{/admin_style/js/canvasjs.min.js}"></script>
+<script th:src="@{/admin_style/js/chart.js}"></script>
+<script th:src="@{/admin_style/js/counterup.min.js}"></script>
+<script th:src="@{/admin_style/js/jquery.slicknav.js}"></script>
+<script th:src="@{/admin_style/js/dashboard-custom.js}"></script>
 <script>
     function changeStatus(statusValue,id){
         window.location.href= '/admin/change-status/'+statusValue+'/'+id;
     }
+</script>
+
+<script>
+    $(function() {
+        $("#search").keypress(function (e) {
+            if ((e.which && e.which == 13) || (e.keyCode && e.keyCode == 13)) {
+                var input =  document.getElementById("search").value;
+                window.location.href= '/admin/search/'+input;
+            }
+        });
+    });
+
 </script>
 </body>
 </html>

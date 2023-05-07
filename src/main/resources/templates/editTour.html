@@ -57,23 +57,30 @@
                                     </div>
                                 </div>
 
-                                <div class="col-sm-6">
+                                <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Chọn địa điểm tour</label>
-                                        <input  id="currentDes" class="form-control" type="text" readonly >
+                                        <input type="hidden" class="form-control"  readonly name="destination" >
+                                        <input   id="currentDes" class="form-control" type="text" readonly >
                                         <select name="destination" id="destination" multiple="multiple">
-                                            <option th:each="type : ${lstTypeTour}" th:value="${type.typeTourId}" th:text="${type.nameTypeTour}" th:id="'des' + ${type.typeTourId}" ></option>
+                                            <option th:each="type : ${lstTypeTour}" th:value="${type.typeTourId}" th:text="${type.nameTypeTour}"></option>
                                         </select>
 
                                     </div>
                                 </div>
-                                <div class="col-sm-1" >
+                                <div class="col-sm-2"  style="top: 40px;" >
                                     <div class="form-group">
-                                        <a id="myBtn" style="cursor: pointer"> <i class="fa-solid fa-circle-plus" style="font-size: 17px" ></i>Thêm loại tour</a>
+                                        <a id="myBtn" style="cursor: pointer"> <i class="fa-solid fa-circle-plus" style="font-size: 17px" ></i>Thêm địa điểm tour</a>
                                     </div>
 
                                 </div>
-                                <div class="col-sm-5">
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <label>Địa điểm khởi hành</label>
+                                        <input  th:field="*{startDes}" th:value="${tourDTO.startDes}" class="form-control" type="text">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Ảnh đại diện</label>
                                         <img id="blah" title="profile image" class="img-circle img-responsive " style="width: 50%;height: 15%" th:src="|@{/images_data/}${tourDTO.imgName}|">

@@ -12,6 +12,7 @@ public interface ICompanyService {
 
     Long saveCompany(CompanysDTO companysDTO);
     List<CompanysDTO> getLstByStatus(int status);
+    List<CompanysDTO> searchByName(String content);
 
 
 

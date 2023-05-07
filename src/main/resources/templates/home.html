@@ -10,22 +10,22 @@
     <!-- favicon -->
     <link rel="icon" type="image/png" href="/images/favicon.png">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" th:href="@{vendors/bootstrap/css/bootstrap.min.css}" media="all">
+    <link rel="stylesheet" th:href="@{/vendors/bootstrap/css/bootstrap.min.css}" media="all">
     <!-- Fonts Awesome CSS -->
-    <link rel="stylesheet" type="text/css" th:href="@{vendors/fontawesome/css/all.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/vendors/fontawesome/css/all.min.css}">
     <!-- jquery-ui css -->
-    <link rel="stylesheet" type="text/css" th:href="@{vendors/jquery-ui/jquery-ui.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/vendors/jquery-ui/jquery-ui.min.css}">
     <!-- modal video css -->
-    <link rel="stylesheet" type="text/css" th:href="@{vendors/modal-video/modal-video.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/vendors/modal-video/modal-video.min.css}">
     <!-- light box css -->
 <!--    <link rel="stylesheet" type="text/css" th:href="@{vendors/lightbox.dist/css/lightbox.min.css}">-->
     <!-- slick slider css -->
-    <link rel="stylesheet" type="text/css" th:href="@{vendors/slick/slick.css}">
-    <link rel="stylesheet" type="text/css" th:href="@{vendors/slick/slick-theme.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/vendors/slick/slick.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/vendors/slick/slick-theme.css}">
     <!-- google fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&amp;family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&amp;display=swap" rel="stylesheet">
     <!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" th:href="@{css/style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
 <!--    <link rel="stylesheet" type="text/css" th:href="@{admin_style/css/style.css}">-->
 <!--    <link rel="stylesheet" th:href="@{admin_style/css/bootstrap.min.css}" media="all">-->
 <!--    &lt;!&ndash; Fonts Awesome CSS &ndash;&gt;-->
@@ -41,7 +41,7 @@
             <div class="container d-flex justify-content-between align-items-center">
                 <div class="site-identity">
                     <h1 class="site-title">
-                        <a href="index-2.html">
+                        <a th:href="@{'/home'}">
                             <img class="white-logo" th:src="|@{/images/}travele-logo.png|" alt="logo">
                         </a>
                     </h1>
@@ -50,7 +50,7 @@
                     <nav id="navigation" class="navigation">
                         <ul>
                             <li class="menu-item-has-children ">
-                                <a href="index-2.html">Trang chủ</a>
+                                <a th:href="@{'/home'}">Trang chủ</a>
                             </li>
 
                             <li class="menu-item-has-children aaa">
@@ -60,7 +60,7 @@
                                         <a href="#">Du lịch miền bắc</a>
                                         <ul>
                                             <li th:each="typeMB : ${lstTypeTour}">
-                                                <a href="" th:if="${typeMB.region=='1'}"><p th:text="${typeMB.nameTypeTour}"></p></a>
+                                                <a th:href="@{'/filterByType/' + ${typeMB.typeTourId}}" th:if="${typeMB.region=='1'}"><p th:text="${typeMB.nameTypeTour}"></p></a>
                                             </li>
 
                                         </ul>
@@ -70,7 +70,7 @@
                                         <a href="admin/db-package.html">Du lịch miền trung</a>
                                         <ul>
                                             <li th:each="typeMB : ${lstTypeTour}">
-                                                <a href="" th:if="${typeMB.region=='2'}"><p th:text="${typeMB.nameTypeTour}"></p></a>
+                                                <a th:href="@{'/filterByType/' + ${typeMB.typeTourId}}" th:if="${typeMB.region=='2'}"><p th:text="${typeMB.nameTypeTour}"></p></a>
                                             </li>
                                         </ul>
                                     </li>
@@ -78,7 +78,7 @@
                                         <a href="admin/db-package.html">Du lịch miền nam</a>
                                         <ul>
                                             <li th:each="typeMB : ${lstTypeTour}">
-                                                <a href="" th:if="${typeMB.region=='3'}"><p th:text="${typeMB.nameTypeTour}"></p></a>
+                                                <a th:href="@{'/filterByType/' + ${typeMB.typeTourId}}" th:if="${typeMB.region=='3'}"><p th:text="${typeMB.nameTypeTour}"></p></a>
                                             </li>
                                         </ul>
                                     </li>
@@ -116,16 +116,18 @@
                                         <div class="trip-search-inner secondary-bg">
                                             <div class="input-group width-col-1">
                                                 <label> Địa điểm muốn đến  </label>
-                                                <input type="text" name="s" placeholder="Địa điểm">
+                                                <input type="text" name="des" placeholder="Địa điểm" id="desContent">
                                             </div>
                                             <div class="input-group width-col-1">
                                                 <label> Ngày khởi hành </label>
-                                                <i class="far fa-calendar"></i>
-                                                <input class="input-date-picker" type="text" name="s" placeholder="DD / MM / YY" autocomplete="off" >
+                                                <input type="date" id="dateContent" name="date" value="" >
                                             </div>
-                                            <div class="input-group width-col-1">
-                                                <label class="screen-reader-text"> Tìm kiếm </label>
-                                                <input type="submit" name="travel-search" value="Tìm kiếm">
+                                            <div class="width-col-1">
+                                                <button style="margin-top: 10px;
+                                                    width: 100px;
+                                                    height: 40px;
+                                                    border-radius: 10px;
+                                                    margin-left: 81px;" name="travel-search" th:onclick="'searchTour();'">Tìm kiếm</button>
                                             </div>
                                         </div>
                                     </div>
@@ -143,7 +145,7 @@
         <div class="package-section">
             <div class="container">
                 <div class="package-inner">
-                    <div class="row">
+                    <div class="row" th:if="${lstTour.size() > 0}">
                         <div class="col-lg-4 col-md-6" th:each="tour:${lstTour}">
                             <div class="package-wrap">
                                 <figure class="feature-image">
@@ -193,6 +195,9 @@
                             </div>
                         </div>
 
+                    </div>
+                    <div class="row" th:if="not ${lstTour.size() > 0}" >
+                        <span style="font-size: 30px;margin-left: 290px;">Không có chuyến đi nào được tìm thấy</span>
                     </div>
                 </div>
             </div>
@@ -262,17 +267,17 @@
 
 <!-- JavaScript -->
 <!--<script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>-->
-<script th:src="@{js/jquery.js}"></script>
+<script th:src="@{/js/jquery.js}"></script>
 <!--<script src="../../../cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>-->
-<script th:src="@{vendors/bootstrap/js/bootstrap.min.js}"></script>
-<script th:src="@{vendors/jquery-ui/jquery-ui.min.js}"></script>
-<script th:src="@{vendors/countdown-date-loop-counter/loopcounter.js}"></script>
-<script th:src="@{js/jquery.counterup.js}"></script>
-<script th:src="@{vendors/modal-video/jquery-modal-video.min.js}"></script>
-<script th:src="@{vendors/masonry/masonry.pkgd.min.js}"></script>
+<script th:src="@{/vendors/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{/vendors/jquery-ui/jquery-ui.min.js}"></script>
+<script th:src="@{/vendors/countdown-date-loop-counter/loopcounter.js}"></script>
+<script th:src="@{/js/jquery.counterup.js}"></script>
+<script th:src="@{/vendors/modal-video/jquery-modal-video.min.js}"></script>
+<script th:src="@{/vendors/masonry/masonry.pkgd.min.js}"></script>
 <!--<script th:src="@{vendors/lightbox.dist/js/lightbox.min.js}"></script>-->
-<script th:src="@{vendors/slick/slick.min.js}"></script>
-<script th:src="@{js/jquery.slicknav.js}"></script>
+<script th:src="@{/vendors/slick/slick.min.js}"></script>
+<script th:src="@{/js/jquery.slicknav.js}"></script>
 <!--<script th:src="@{admin_style/js/custom.min.js}"></script>-->
 <!--<script th:src="@{admin_style/js/jquery-3.2.1.min.js}"></script>-->
 <!--<script src="../../../../cdn.jsdelivr.net/npm/popper.js%401.16.0/dist/umd/popper.min.js"></script>-->
@@ -281,6 +286,20 @@
 <!--<script th:src="@{admin_style/js/counterup.min.js}"></script>-->
 <!--<script th:src="@{admin_style/js/jquery.slicknav.js}"></script>-->
 <!--<script th:src="@{admin_style/js/dashboard-custom.js}"></script>-->
-
+<script>
+    function searchTour(){
+        var date = document.getElementById('dateContent').value;
+        var des = document.getElementById('desContent').value;
+        if(date===''&&des===''){
+            alert("Bạn phải nhập 1 trong 2 trường để tìm kiếm!");
+            return false;
+        }else if(date===''&&des!==''){
+            date=null;
+        }else if(date!==''&&des===''){
+            des=null;
+         }
+        window.location.href= '/search/' + des + '/' + date;
+    }
+</script>
 </body>
 </html>

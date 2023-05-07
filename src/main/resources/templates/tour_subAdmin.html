@@ -16,7 +16,7 @@
                     <table class="table">
                         <thead>
                         <tr>
-                            <th>Tên Chuyến Đi</th>
+                            <th>Hành Trình</th>
                             <th>Ngày Bắt Đầu </th>
                             <th>Địa Điểm Khởi Hành </th>
                             <th>Khoảng Thời Gian </th>
@@ -34,6 +34,7 @@
                             <td>
                                 <a style="font-size: 14px;color:white"  th:href="@{'/subAdmin/edit-Tour/' + ${tour.tourId}}" class="badge badge-success"><i class="far fa-edit"></i></a>
                                 <a style="font-size: 14px;color: white"  th:href="@{'/subAdmin/delete-Tour/' + ${tour.tourId}}" class="badge badge-danger"><i class="far fa-trash-alt"></i></a>
+                                <a style="font-size: 14px;color: white"  th:href="@{'/subAdmin/review-Tour/' + ${tour.tourId}}" class="badge badge-danger"><i class="fa-sharp fa-solid fa-eye"></i></a>
                             </td>
                         </tr>
                         </tbody>

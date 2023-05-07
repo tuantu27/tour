@@ -61,6 +61,11 @@ public class AdminController {
 
     }
 
-
+    @GetMapping("/search/{content}")
+    public String search_company(Model model,@PathVariable("content") String content) {
+        List<CompanysDTO> lstCompany = iCompanyService.searchByName(content);
+        model.addAttribute("lstCompany",lstCompany);
+        return "admin";
+    }
 
 }

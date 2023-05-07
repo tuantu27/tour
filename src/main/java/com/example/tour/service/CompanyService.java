@@ -107,4 +107,29 @@ public class CompanyService implements ICompanyService{
         }
         return companysDTOS;
     }
+
+    @Override
+    public List<CompanysDTO> searchByName(String content) {
+        List<CompanysEntity> companysEntities = iCompanyRepository.getCompanyByName(content);
+        List<CompanysDTO>companysDTOS = new ArrayList<>();
+        for(CompanysEntity companysEntity : companysEntities){
+            CompanysDTO companysDTO = new CompanysDTO();
+
+            Optional<AccountsEntity> accountsEntity  = Optional.ofNullable(accountRepository.getAccountsEntitiesByCompany_CompanyId(companysEntity.getCompanyId()));
+            if(!accountsEntity.isEmpty()){
+                companysDTO.setAccountId(accountsEntity.get().getAccountId());
+            }else {
+                companysDTO.setAccountId((long) -1);
+            }
+            companysDTO.setCompanyId(companysEntity.getCompanyId());
+            companysDTO.setCompanyName(companysEntity.getCompanyName());
+            companysDTO.setAddress(companysEntity.getAddress());
+            companysDTO.setCompanyCode(companysEntity.getCompanyCode());
+            companysDTO.setEmail(companysEntity.getEmail());
+            companysDTO.setStatus(companysEntity.getStatus());
+            companysDTOS.add(companysDTO);
+        }
+        return companysDTOS;
+
+    }
 }
