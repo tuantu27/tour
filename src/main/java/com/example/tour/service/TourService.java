@@ -22,7 +22,7 @@ public class TourService implements ITourService {
 
     @Override
     public List<ToursDTO> getAll() {
-        List<ToursEntity> toursEntityList = iTourRepository.findAll();
+        List<ToursEntity> toursEntityList = iTourRepository.getToursEntitiesByStatus(1);
         List<ToursDTO> toursDTOS = new ArrayList<>();
         for(ToursEntity toursEntity : toursEntityList){
             ToursDTO toursDTO = toursEntity.toDto(toursEntity);
@@ -104,7 +104,7 @@ public class TourService implements ITourService {
 
     @Override
     public List<ToursDTO> getTourByNameAndDate(String name, String date) {
-        List<ToursEntity> toursEntityList = iTourRepository.getTourByNameAndDate(name,date);
+        List<ToursEntity> toursEntityList = iTourRepository.getTourByNameAndDate(name,date,1);
         List<ToursDTO> toursDTOS = new ArrayList<>();
         for(ToursEntity toursEntity : toursEntityList){
             ToursDTO toursDTO = toursEntity.toDto(toursEntity);
@@ -115,7 +115,7 @@ public class TourService implements ITourService {
 
     @Override
     public List<ToursDTO> getTourByName(String name) {
-        List<ToursEntity> toursEntityList = iTourRepository.getTourByName(name);
+        List<ToursEntity> toursEntityList = iTourRepository.getTourByName(name,1);
         List<ToursDTO> toursDTOS = new ArrayList<>();
         for(ToursEntity toursEntity : toursEntityList){
             ToursDTO toursDTO = toursEntity.toDto(toursEntity);

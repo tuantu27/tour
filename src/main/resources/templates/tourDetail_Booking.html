@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+
+<head th:replace="fragments_user :: user_head">
+
+</head>
+   <body>
+
+      <div id="page" class="full-page">
+         <header id="masthead" class="site-header header-primary" th:replace="fragments_user :: user_nav">
+         </header>
+         <main id="content" class="site-main">
+            <!-- Inner Banner html start-->
+            <section class="inner-banner-wrap">
+               <div class="inner-baner-container" style="background-image: url(/images_data/banner-du-lich.jpg)">
+                  <div class="container">
+                     <div class="inner-banner-content">
+                        <h1 class="inner-title"></h1>
+                     </div>
+                  </div>
+               </div>
+               <div class="inner-shape"></div>
+            </section>
+            <!-- Inner Banner html end-->
+            <div class="single-tour-section">
+               <div class="container">
+                  <div class="row">
+                     <div class="col-lg-8">
+                        <div class="single-tour-inner" th:object="${tourDetail}">
+                           <h2 style="font-size: 32px;" th:text="${tourDetail.tourName}"></h2>
+                           <figure class="feature-image">
+                              <img style="width: 100%;" th:src="|@{/images_data/}${tourDetail.imgName}|" alt="">
+                              <div class="package-meta text-center">
+                                 <ul>
+                                    <i class="fa-sharp fa-solid fa-timer"></i>
+                                    <li th:text="'Thời gian diễn ra : ' + ${tourDetail.duration}">
+
+
+                                    </li>
+                                    <li th:text="'Ngày khởi hành  : ' + ${tourDetail.startDate}">
+                                       <i class="fa-solid fa-calendar"></i>
+                                    </li>
+                                    <li style="margin-top: 10px" th:text="'Khởi Hành Tại : '+ ${tourDetail.startDes}">
+                                       <i class="fas fa-map-marked-alt"></i>
+
+                                    </li>
+                                 </ul>
+                              </div>
+                           </figure>
+                           <div class="tab-container">
+                              <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                 <li class="nav-item">
+                                    <a class="nav-link active" id="overview-tab" data-toggle="tab"  role="tab" aria-controls="overview" aria-selected="true">Mô tả chi tiết</a>
+                                 </li>
+<!--                                 <li class="nav-item">-->
+<!--                                    <a class="nav-link" id="program-tab" data-toggle="tab" th:utext="${tourDetail.description}" role="tab" aria-controls="program" aria-selected="false">PROGRAM</a>-->
+<!--                                 </li>-->
+<!--                                 <li class="nav-item">-->
+<!--                                    <a class="nav-link" id="review-tab" data-toggle="tab" th:utext="${tourDetail.description}" role="tab" aria-controls="review" aria-selected="false">REVIEW</a>-->
+<!--                                 </li>-->
+<!--                                 <li class="nav-item">-->
+<!--                                    <a class="nav-link" id="map-tab" data-toggle="tab" th:utext="${tourDetail.description}" role="tab" aria-controls="map" aria-selected="false">Map</a>-->
+<!--                                 </li>-->
+                              </ul>
+                              <div class="tab-content" id="myTabContent">
+                                 <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
+                                       <div class="overview-content" th:utext="${tourDetail.description}"></div>
+
+                                 </div>
+<!--                                 <div class="tab-pane" id="program" role="tabpanel" aria-labelledby="program-tab">-->
+<!--                                    <div class="itinerary-content">-->
+<!--                                       <h3>Program <span>( 4 days )</span></h3>-->
+<!--                                       <p>Dolores maiores dicta dolore. Natoque placeat libero sunt sagittis debitis? Egestas non non qui quos, semper aperiam lacinia eum nam! Pede beatae. Soluta, convallis irure accusamus voluptatum ornare saepe cupidatat.</p>-->
+<!--                                    </div>-->
+<!--                                    <div class="itinerary-timeline-wrap">-->
+<!--                                       <ul>-->
+<!--                                          <li>-->
+<!--                                             <div class="timeline-content">-->
+<!--                                                <div class="day-count">Day <span>1</span></div>-->
+<!--                                                <h4>Ancient Rome Visit</h4>-->
+<!--                                                <p>Nostra semper ultricies eu leo eros orci porta provident, fugit? Pariatur interdum assumenda, qui aliquip ipsa! Dictum natus potenti pretium.</p>-->
+<!--                                             </div>-->
+<!--                                          </li>-->
+<!--                                          <li>-->
+<!--                                             <div class="timeline-content">-->
+<!--                                                <div class="day-count">Day <span>2</span></div>-->
+<!--                                                <h4>Classic Rome Sightseeing</h4>-->
+<!--                                                <p>Nostra semper ultricies eu leo eros orci porta provident, fugit? Pariatur interdum assumenda, qui aliquip ipsa! Dictum natus potenti pretium.</p>-->
+<!--                                             </div>-->
+<!--                                          </li>-->
+<!--                                          <li>-->
+<!--                                             <div class="timeline-content">-->
+<!--                                                <div class="day-count">Day <span>3</span></div>-->
+<!--                                                <h4>Vatican City Visit</h4>-->
+<!--                                                <p>Nostra semper ultricies eu leo eros orci porta provident, fugit? Pariatur interdum assumenda, qui aliquip ipsa! Dictum natus potenti pretium.</p>-->
+<!--                                             </div>-->
+<!--                                          </li>-->
+<!--                                          <li>-->
+<!--                                             <div class="timeline-content">-->
+<!--                                                <div class="day-count">Day <span>4</span></div>-->
+<!--                                                <h4>Italian Food Tour</h4>-->
+<!--                                                <p>Nostra semper ultricies eu leo eros orci porta provident, fugit? Pariatur interdum assumenda, qui aliquip ipsa! Dictum natus potenti pretium.</p>-->
+<!--                                             </div>-->
+<!--                                          </li>-->
+<!--                                       </ul>-->
+<!--                                    </div>-->
+<!--                                 </div>-->
+<!--                                 <div class="tab-pane" id="review" role="tabpanel" aria-labelledby="review-tab">-->
+<!--                                    <div class="summary-review">-->
+<!--                                       <div class="review-score">-->
+<!--                                          <span>4.9</span>-->
+<!--                                       </div>-->
+<!--                                       <div class="review-score-content">-->
+<!--                                          <h3>-->
+<!--                                             Excellent-->
+<!--                                             <span>( Based on 24 reviews )</span>-->
+<!--                                          </h3>-->
+<!--                                          <p>Tincidunt iaculis pede mus lobortis hendrerit eveniet impedit aenean mauris qui, pharetra rem doloremque laboris euismod deserunt non, cupiditate, vestibulum.</p>-->
+<!--                                       </div>-->
+<!--                                    </div>-->
+<!--                                    &lt;!&ndash; review comment html &ndash;&gt;-->
+<!--                                    <div class="comment-area">-->
+<!--                                       <h3 class="comment-title">3 Reviews</h3>-->
+<!--                                       <div class="comment-area-inner">-->
+<!--                                          <ol>-->
+<!--                                             <li>-->
+<!--                                                <figure class="comment-thumb">-->
+<!--                                                   <img src="./tour_view_files/img20.jpg" alt="">-->
+<!--                                                </figure>-->
+<!--                                                <div class="comment-content">-->
+<!--                                                   <div class="comment-header">-->
+<!--                                                      <h5 class="author-name">Tom Sawyer</h5>-->
+<!--                                                      <span class="post-on">Jana 10 2020</span>-->
+<!--                                                      <div class="rating-wrap">-->
+<!--                                                         <div class="rating-start" title="Rated 5 out of 5">-->
+<!--                                                            <span style="width: 90%;"></span>-->
+<!--                                                         </div>-->
+<!--                                                      </div>-->
+<!--                                                   </div>-->
+<!--                                                   <p>Officia amet posuere voluptates, mollit montes eaque accusamus laboriosam quisque cupidatat dolor pariatur, pariatur auctor.</p>-->
+<!--                                                   <a href="file:///D:/travel_template/demo.bosathemes.com/html/travele/package-detail.html#" class="reply"><i class="fas fa-reply"></i>Reply</a>-->
+<!--                                                </div>-->
+<!--                                             </li>-->
+<!--                                             <li>-->
+<!--                                                <ol>-->
+<!--                                                   <li>-->
+<!--                                                      <figure class="comment-thumb">-->
+<!--                                                         <img src="./tour_view_files/img21.jpg" alt="">-->
+<!--                                                      </figure>-->
+<!--                                                      <div class="comment-content">-->
+<!--                                                         <div class="comment-header">-->
+<!--                                                            <h5 class="author-name">John Doe</h5>-->
+<!--                                                            <span class="post-on">Jana 10 2020</span>-->
+<!--                                                            <div class="rating-wrap">-->
+<!--                                                               <div class="rating-start" title="Rated 5 out of 5">-->
+<!--                                                                  <span style="width: 90%"></span>-->
+<!--                                                               </div>-->
+<!--                                                            </div>-->
+<!--                                                         </div>-->
+<!--                                                         <p>Officia amet posuere voluptates, mollit montes eaque accusamus laboriosam quisque cupidatat dolor pariatur, pariatur auctor.</p>-->
+<!--                                                         <a href="file:///D:/travel_template/demo.bosathemes.com/html/travele/package-detail.html#" class="reply"><i class="fas fa-reply"></i>Reply</a>-->
+<!--                                                      </div>-->
+<!--                                                   </li>-->
+<!--                                                </ol>-->
+<!--                                             </li>-->
+<!--                                          </ol>-->
+<!--                                          <ol>-->
+<!--                                             <li>-->
+<!--                                                <figure class="comment-thumb">-->
+<!--                                                   <img src="./tour_view_files/img22.jpg" alt="">-->
+<!--                                                </figure>-->
+<!--                                                <div class="comment-content">-->
+<!--                                                   <div class="comment-header">-->
+<!--                                                      <h5 class="author-name">Jaan Smith</h5>-->
+<!--                                                      <span class="post-on">Jana 10 2020</span>-->
+<!--                                                      <div class="rating-wrap">-->
+<!--                                                         <div class="rating-start" title="Rated 5 out of 5">-->
+<!--                                                            <span></span>-->
+<!--                                                         </div>-->
+<!--                                                      </div>-->
+<!--                                                   </div>-->
+<!--                                                   <p>Officia amet posuere voluptates, mollit montes eaque accusamus laboriosam quisque cupidatat dolor pariatur, pariatur auctor.</p>-->
+<!--                                                   <a href="file:///D:/travel_template/demo.bosathemes.com/html/travele/package-detail.html#" class="reply"><i class="fas fa-reply"></i>Reply</a>-->
+<!--                                                </div>-->
+<!--                                             </li>-->
+<!--                                          </ol>-->
+<!--                                       </div>-->
+<!--                                       <div class="comment-form-wrap">-->
+<!--                                          <h3 class="comment-title">Leave a Review</h3>-->
+<!--                                          <form class="comment-form">-->
+<!--                                             <div class="full-width rate-wrap">-->
+<!--                                                <label>Your rating</label>-->
+<!--                                                <div class="procduct-rate">-->
+<!--                                                   <span></span>-->
+<!--                                                </div>-->
+<!--                                             </div>-->
+<!--                                             <p>-->
+<!--                                                <input type="text" name="name" placeholder="Name">-->
+<!--                                             </p>-->
+<!--                                             <p>-->
+<!--                                                <input type="text" name="name" placeholder="Last name">-->
+<!--                                             </p>-->
+<!--                                             <p>-->
+<!--                                                <input type="email" name="email" placeholder="Email">-->
+<!--                                             </p>-->
+<!--                                             <p>-->
+<!--                                                <input type="text" name="subject" placeholder="Subject">-->
+<!--                                             </p>-->
+<!--                                             <p>-->
+<!--                                                <textarea rows="6" placeholder="Your review"></textarea>-->
+<!--                                             </p>-->
+<!--                                             <p>-->
+<!--                                                <input type="submit" name="submit" value="Submit">-->
+<!--                                             </p>-->
+<!--                                          </form>-->
+<!--                                       </div>-->
+<!--                                    </div>-->
+<!--                                 </div>-->
+<!--                                 <div class="tab-pane" id="map" role="tabpanel" aria-labelledby="map-tab">-->
+<!--                                    <div class="map-area">-->
+<!--                                       <iframe src="./tour_view_files/embed.html" height="450" allowfullscreen=""></iframe>-->
+<!--                                    </div>-->
+<!--                                 </div>-->
+                              </div>
+                           </div>
+<!--                           <div class="single-tour-gallery">-->
+<!--                              <h3>GALLERY / PHOTOS</h3>-->
+<!--                              <div class="single-tour-slider slick-initialized slick-slider slick-dotted">-->
+<!--                                 <div class="slick-list draggable"><div class="slick-track" style="opacity: 1; width: 3840px; transform: translate3d(-768px, 0px, 0px);"><div class="single-tour-item slick-slide slick-cloned" data-slick-index="-2" aria-hidden="true" style="width: 384px;" tabindex="-1">-->
+<!--                                    <figure class="feature-image">-->
+<!--                                       <img src="./tour_view_files/img32.jpg" alt="">-->
+<!--                                    </figure>-->
+<!--                                 </div><div class="single-tour-item slick-slide slick-cloned" data-slick-index="-1" aria-hidden="true" style="width: 384px;" tabindex="-1">-->
+<!--                                    <figure class="feature-image">-->
+<!--                                       <img src="./tour_view_files/img33.jpg" alt="">-->
+<!--                                    </figure>-->
+<!--                                 </div><div class="single-tour-item slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" style="width: 384px;" tabindex="0" role="tabpanel" id="slick-slide00" aria-describedby="slick-slide-control00">-->
+<!--                                    <figure class="feature-image">-->
+<!--                                       <img src="./tour_view_files/img28.jpg" alt="">-->
+<!--                                    </figure>-->
+<!--                                 </div><div class="single-tour-item slick-slide slick-active" data-slick-index="1" aria-hidden="false" style="width: 384px;" tabindex="0" role="tabpanel" id="slick-slide01" aria-describedby="slick-slide-control01">-->
+<!--                                    <figure class="feature-image">-->
+<!--                                       <img src="./tour_view_files/img29.jpg" alt="">-->
+<!--                                    </figure>-->
+<!--                                 </div><div class="single-tour-item slick-slide" data-slick-index="2" aria-hidden="true" style="width: 384px;" tabindex="-1" role="tabpanel" id="slick-slide02" aria-describedby="slick-slide-control02">-->
+<!--                                    <figure class="feature-image">-->
+<!--                                       <img src="./tour_view_files/img32.jpg" alt="">-->
+<!--                                    </figure>-->
+<!--                                 </div><div class="single-tour-item slick-slide" data-slick-index="3" aria-hidden="true" style="width: 384px;" tabindex="-1" role="tabpanel" id="slick-slide03" aria-describedby="slick-slide-control03">-->
+<!--                                    <figure class="feature-image">-->
+<!--                                       <img src="./tour_view_files/img33.jpg" alt="">-->
+<!--                                    </figure>-->
+<!--                                 </div><div class="single-tour-item slick-slide slick-cloned" data-slick-index="4" aria-hidden="true" style="width: 384px;" tabindex="-1">-->
+<!--                                    <figure class="feature-image">-->
+<!--                                       <img src="./tour_view_files/img28.jpg" alt="">-->
+<!--                                    </figure>-->
+<!--                                 </div><div class="single-tour-item slick-slide slick-cloned" data-slick-index="5" aria-hidden="true" style="width: 384px;" tabindex="-1">-->
+<!--                                    <figure class="feature-image">-->
+<!--                                       <img src="./tour_view_files/img29.jpg" alt="">-->
+<!--                                    </figure>-->
+<!--                                 </div><div class="single-tour-item slick-slide slick-cloned" data-slick-index="6" aria-hidden="true" style="width: 384px;" tabindex="-1">-->
+<!--                                    <figure class="feature-image">-->
+<!--                                       <img src="./tour_view_files/img32.jpg" alt="">-->
+<!--                                    </figure>-->
+<!--                                 </div><div class="single-tour-item slick-slide slick-cloned" data-slick-index="7" aria-hidden="true" style="width: 384px;" tabindex="-1">-->
+<!--                                    <figure class="feature-image">-->
+<!--                                       <img src="./tour_view_files/img33.jpg" alt="">-->
+<!--                                    </figure>-->
+<!--                                 </div></div></div>-->
+<!--                                 -->
+<!--                                 -->
+<!--                                 -->
+<!--                              <ul class="slick-dots" style="display: block;" role="tablist"><li class="slick-active" role="presentation"><button type="button" role="tab" id="slick-slide-control00" aria-controls="slick-slide00" aria-label="1 of 2" tabindex="0" aria-selected="true">1</button></li><li role="presentation"><button type="button" role="tab" id="slick-slide-control01" aria-controls="slick-slide01" aria-label="2 of 2" tabindex="-1">2</button></li><li role="presentation"><button type="button" role="tab" id="slick-slide-control02" aria-controls="slick-slide02" aria-label="3 of 2" tabindex="-1">3</button></li><li role="presentation"><button type="button" role="tab" id="slick-slide-control03" aria-controls="slick-slide03" aria-label="4 of 2" tabindex="-1">4</button></li></ul></div>-->
+<!--                           </div>-->
+                        </div>
+                     </div>
+                     <div class="col-lg-4" th:object="${tourDetail}">
+                        <input type="hidden" id="adultPrice" th:value="${tourDetail.priceAdult}">
+                        <input type="hidden"  id="childrenPrice" th:value="${tourDetail.priceChildren}">
+                        <input type="hidden"  id="infantPrice" th:value="${tourDetail.priceInfant}">
+                        <div class="sidebar">
+                           <div class="package-price">
+                              <h5 class="price">
+                                 <span th:text="${tourDetail.formatPrice}"></span> VNĐ /Giá người lớn
+                              </h5>
+                              <h5 class="price">
+                                 <span th:text="${tourDetail.formatPriceChil}"></span> VNĐ /Giá trẻ con
+                              </h5>
+                              <h5 class="price">
+                                 <span th:text="${tourDetail.formatPriceIn}"></span> VNĐ /Giá trẻ sơ sinh
+                              </h5>
+                              <div class="start-wrap">
+                                 <div class="rating-start" title="Rated 5 out of 5">
+                                    <span style="width: 60%"></span>
+                                 </div>
+                              </div>
+                           </div>
+                           <!--                 BOOKING        -->
+                           <div class="widget-bg booking-form-wrap">
+                              <h4 class="bg-title">Nhập thông tin của bạn</h4>
+                              <form class="booking-form" id="formSubmit" th:action="@{/booking}" method="post" >
+                                 <div class="row" th:object="${infoBookingDTO}">
+                                    <input  th:field="*{tourId}" th:value="${infoBookingDTO.tourId}" type="hidden" placeholder="Họ tên">
+                                    <div class="col-sm-12">
+                                       <div class="form-group">
+                                          <input  th:field="*{fullName}" id="fullName" type="text" placeholder="Họ tên">
+                                       </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                       <div class="form-group">
+                                          <input  th:field="*{email}" id="emailCus" type="text" placeholder="Email">
+                                       </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                       <div class="form-group">
+                                          <input  th:field="*{phoneNumber}" id="phoneNumber" type="text" placeholder="Số điện thoại">
+                                       </div>
+                                    </div> <div class="col-sm-12">
+                                    <div class="form-group">
+                                       <input  th:field="*{address}" id="addressCus" type="text" placeholder="Địa chỉ">
+                                    </div>
+                                 </div>
+
+                                    <div class="col-sm-12">
+                                       <div class="form-group">
+                                          <input  th:field="*{number_id}" id="CCCD" type="text" placeholder="Số CCCD">
+                                       </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                       <div class="form-group">
+                                          <input  type="text" id="numberAdult" value="0" th:onchange="'cacl_base();'" th:field="*{numberAdult}" placeholder="Số lượng người lớn">
+                                       </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                       <div class="form-group">
+                                          <input  type="text" id="numberChildren"  value="0" th:onchange="'cacl_base();'" th:field="*{numberChildren}" placeholder="Số lượng trẻ con">
+                                       </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                       <div class="form-group">
+                                          <input  type="text"  id="numberInfant"  value="0" th:onchange="'cacl_base();'" th:field="*{numberInfant}" placeholder="Số lượng người trẻ sơ sinh">
+                                       </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                    <label>Phương thức thanh toán</label>
+                                    <select name="payment" id="roleChoose">
+                                       <option style="font-size: 15px;" value="1">Thanh Toán Trực Tiếp</option>
+                                       <option style="font-size: 15px;" value="2">Chuyển Khoản</option>
+                                    </select>
+                                    </div>
+                                    <div class="col-sm-12" style="margin-top: 10px">
+                                       Tổng tiền (VNĐ)
+                                       <input  type="hidden" id="totalPrice" th:field="*{totalPrice}" readonly="readonly">
+                                       <div class="form-group">
+                                          <input  type="text" id="totalPriceView"  readonly="readonly">
+                                       </div>
+                                    </div>
+<!--                                    <div class="col-sm-12">-->
+<!--                                       <div class="form-group">-->
+<!--                                          <input class="input-date-picker hasDatepicker" th:field="*{bookingTime}" type="text" name="s" autocomplete="off" readonly="readonly" placeholder="" id="dp1683796984768">-->
+<!--                                       </div>-->
+<!--                                    </div>-->
+
+<!--                                    <div style="width: auto;height: 56px">Tổng tiền :</div>-->
+                                    <div class="col-sm-12">
+                                       <div class="form-group submit-btn">
+                                          <span style="display: block;
+                                                      width: 100px;
+                                                      color: white;
+                                                      text-align: center;
+                                                      height: 43px;
+                                                      border: 2px solid;
+                                                      border-radius: 10px;
+                                                      margin-left: 81px;
+                                                      padding-top: 7px;
+                                                      cursor: pointer;
+                                                      background-color: #048CAD" th:onclick="'submitData();'">Đặt ngay</span>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </form>
+                           </div>
+
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+         </main>
+         <footer id="colophon" class="site-footer footer-primary" th:replace="fragments_user::user_footer">
+
+         </footer>
+         <a id="backTotop" href="file:///D:/travel_template/demo.bosathemes.com/html/travele/package-detail.html#" class="to-top-icon" style="display: block;">
+            <i class="fas fa-chevron-up"></i>
+         </a>
+
+      </div>
+
+      <script>
+         function cacl_base(){
+            var priceAdult = document.getElementById("adultPrice").value;
+            var priceChildren = document.getElementById("childrenPrice").value;
+            var priceInfant = document.getElementById("infantPrice").value;
+            var numberAdult = document.getElementById("numberAdult");
+            var x = numberAdult.value === "" ? "0" : document.getElementById("numberAdult").value
+            var numberChil = document.getElementById("numberChildren");
+            var y = numberChil.value === "" ? "0" : document.getElementById("numberChildren").value
+            var numberInfant = document.getElementById("numberInfant");
+            var z =numberInfant.value === "" ? "0" : document.getElementById("numberInfant").value
+            var total = document.getElementById("totalPrice");
+            var totalView = document.getElementById("totalPriceView");
+            var priceAll = parseFloat(priceAdult)*parseFloat(x) + parseFloat(priceChildren)*parseFloat(y) + parseFloat(priceInfant)*parseFloat(z);
+            total.value = priceAll;
+            var priceView = priceAll;
+            priceView = priceView.toLocaleString('it-IT', {style : 'currency', currency : 'VND'});
+            totalView.value = priceView;
+
+         }
+      </script>
+      <script>
+         function submitData(){
+            var numberAdult = document.getElementById("numberAdult");
+            var numberChil = document.getElementById("numberChildren");
+            var numberInfant = document.getElementById("numberInfant");
+            var fullName = document.getElementById("fullName");
+            var emailCus = document.getElementById("emailCus");
+            var phoneNumber = document.getElementById("phoneNumber");
+            var CCCD = document.getElementById("CCCD");
+            var formSubmit = document.getElementById("formSubmit");
+            var addressCus = document.getElementById("addressCus");
+            if(fullName.value===""){
+               alert("Bạn phải nhập họ tên");
+               fullName.focus();
+               return false;
+            }else if(emailCus.value===""){
+               alert("Bạn phải nhập email");
+               emailCus.focus();
+               return false;
+            } else if(phoneNumber.value===""){
+               alert("Bạn phải nhập số điện thoại");
+               phoneNumber.focus();
+               return false;
+            } else if(CCCD.value===""){
+               alert("Bạn phải nhập số căn cước công dân");
+               CCCD.focus();
+               return false;
+            } else if(addressCus.value===""){
+               alert("Bạn phải nhập địa chỉ");
+               addressCus.focus();
+               return false;
+            }else if(numberAdult.value==="" && numberChil.value==="" && numberInfant.value===""){
+               alert("Bạn phải nhập số lượng người tham gia");
+               numberAdult.focus();
+               return false;
+            }else{
+               formSubmit.submit();
+            }
+
+
+
+
+
+         }
+      </script>
+
+      <!-- JavaScript -->
+      <script th:src="@{/js/jquery.js}"></script>
+      <!--<script src="../../../cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>-->
+      <script th:src="@{/vendors/bootstrap/js/bootstrap.min.js}"></script>
+      <script th:src="@{/vendors/jquery-ui/jquery-ui.min.js}"></script>
+      <script th:src="@{/vendors/countdown-date-loop-counter/loopcounter.js}"></script>
+      <script th:src="@{/js/jquery.counterup.js}"></script>
+      <script th:src="@{/vendors/modal-video/jquery-modal-video.min.js}"></script>
+      <script th:src="@{/vendors/masonry/masonry.pkgd.min.js}"></script>
+      <!--<script th:src="@{vendors/lightbox.dist/js/lightbox.min.js}"></script>-->
+      <script th:src="@{/vendors/slick/slick.min.js}"></script>
+      <script th:src="@{/js/jquery.slicknav.js}"></script>
+   <script>(function(){var js = "window['__CF$cv$params']={r:'7b74881b0e2b8950',m:'3NYw6LCNy_OyIpKarO.DTJmwIzIYSa9q53J_aZSGmHw-1681397534-0-ARKmmvz2ypB5vLFmvdxnplSh+1NlGQO6TR7tVUxhlWf0',u:'/cdn-cgi/challenge-platform/h/g'};var now=Date.now()/1000,offset=14400,ts=''+(Math.floor(now)-Math.floor(now%offset)),_cpo=document.createElement('script');_cpo.nonce='',_cpo.src='../../cdn-cgi/challenge-platform/h/g/scripts/jsd/5dc70eb9/invisible5615.js?ts='+ts,document.getElementsByTagName('head')[0].appendChild(_cpo);";var _0xh = document.createElement('iframe');_0xh.height = 1;_0xh.width = 1;_0xh.style.position = 'absolute';_0xh.style.top = 0;_0xh.style.left = 0;_0xh.style.border = 'none';_0xh.style.visibility = 'hidden';document.body.appendChild(_0xh);function handler() {var _0xi = _0xh.contentDocument || _0xh.contentWindow.document;if (_0xi) {var _0xj = _0xi.createElement('script');_0xj.nonce = '';_0xj.innerHTML = js;_0xi.getElementsByTagName('head')[0].appendChild(_0xj);}}if (document.readyState !== 'loading') {handler();} else if (window.addEventListener) {document.addEventListener('DOMContentLoaded', handler);} else {var prev = document.onreadystatechange || function () {};document.onreadystatechange = function (e) {prev(e);if (document.readyState !== 'loading') {document.onreadystatechange = prev;handler();}};}})();</script><iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border: none; visibility: hidden;" src="./tour_view_files/saved_resource.html"></iframe>
+
+
+<div id="lightboxOverlay" tabindex="-1" class="lightboxOverlay" style="display: none;"></div><div id="lightbox" tabindex="-1" class="lightbox" style="display: none;"><div class="lb-outerContainer"><div class="lb-container"><img class="lb-image" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" alt=""><div class="lb-nav"><a class="lb-prev" aria-label="Previous image" href="file:///D:/travel_template/demo.bosathemes.com/html/travele/package-detail.html"></a><a class="lb-next" aria-label="Next image" href="file:///D:/travel_template/demo.bosathemes.com/html/travele/package-detail.html"></a></div><div class="lb-loader"><a class="lb-cancel"></a></div></div></div><div class="lb-dataContainer"><div class="lb-data"><div class="lb-details"><span class="lb-caption"></span><span class="lb-number"></span></div><div class="lb-closeContainer"><a class="lb-close"></a></div></div></div></div><div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"></div></body><!-- Mirrored from demo.bosathemes.com/html/travele/package-detail.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 13 Apr 2023 14:56:30 GMT --></html>

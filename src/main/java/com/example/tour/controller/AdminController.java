@@ -2,8 +2,10 @@ package com.example.tour.controller;
 
 import com.example.tour.model.dto.AccountsDTO;
 import com.example.tour.model.dto.CompanysDTO;
+import com.example.tour.model.dto.TypeTourDTO;
 import com.example.tour.service.IAccountService;
 import com.example.tour.service.ICompanyService;
+import com.example.tour.service.ITypeTourService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.Authentication;
@@ -26,6 +28,8 @@ public class AdminController {
     @Autowired
     IAccountService iAccountService;
 
+    @Autowired
+    ITypeTourService iTypeTourService;
 
 
     @GetMapping("/company")
@@ -66,6 +70,30 @@ public class AdminController {
         List<CompanysDTO> lstCompany = iCompanyService.searchByName(content);
         model.addAttribute("lstCompany",lstCompany);
         return "admin";
+    }
+
+    @GetMapping("/destination")
+    public String viewDestination(Model model) {
+        List<TypeTourDTO> lstTypeTour = iTypeTourService.getAll();
+        model.addAttribute("lstTypeTour", lstTypeTour);
+        return "destination";
+    }
+    @GetMapping("/update_destination/{id}/{name}/{value}")
+    public String updateTypeTour(Model model,@PathVariable("id")Long id,@PathVariable("name")String name,@PathVariable("value")String region) {
+        TypeTourDTO typeTourDTO = iTypeTourService.getById(id);
+        typeTourDTO.setNameTypeTour(name);
+        typeTourDTO.setRegion(region);
+        typeTourDTO.setStatus(1);
+        iTypeTourService.updateTypeTour(typeTourDTO);
+        model.addAttribute("success","Cập nhật thành công");
+        return "redirect:/admin/destination";
+    }
+    @GetMapping("/delete_des/{id}")
+    public String deleteTypeTour(Model model,@PathVariable("id")Long id) {
+        TypeTourDTO typeTourDTO = iTypeTourService.getById(id);
+        typeTourDTO.setStatus(0);
+        iTypeTourService.updateTypeTour(typeTourDTO);
+        return "redirect:/admin/destination";
     }
 
 }

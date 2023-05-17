@@ -10,4 +10,6 @@ public interface ITypeTourService {
     void saveTypeTour(TypeTourDTO typeTourDTO);
     List<TypeTourDTO> getLstByTourId(Long tourId);
     TypeTourDTO getById(Long id);
+    void updateTypeTour(TypeTourDTO typeTourDTO);
+
 }

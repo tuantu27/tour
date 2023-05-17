@@ -32,7 +32,6 @@ public class AccountsEntity {
     @NotEmpty(message = "{not.empty}")
 
     private String password;
-    private String avatar;
     private String email;
     @JsonFormat(pattern = "dd/MM/yyyy")
     @DateTimeFormat(pattern = "dd/MM/yyyy")

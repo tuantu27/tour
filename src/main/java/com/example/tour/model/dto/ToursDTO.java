@@ -20,12 +20,13 @@ public class ToursDTO {
     private Long priceAdult;
     private Long priceChildren;
     private String formatPrice;
+    private String formatPriceChil;
+    private String formatPriceIn;
     private Long priceInfant;
     private String startDes;
     private int status;
     private Long accountId;
     private AccountsDTO accountsDTO;
-
     private List<ReviewsDTO> reviewsDTOS;
     private List<BookingDTO> bookingDTOS;
     private List<MultipleTypeTourDTO> multipleTypeTourDTOS;

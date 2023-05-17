@@ -19,9 +19,10 @@ public class CustomersEntity {
     private Long customerId;
     private String fullName;
     private String phoneNumber;
-    private int gender;
-    private Timestamp dob; //date of birth
+    private String email;
+    private String number_id;
     private String address;
+    private int status;
 
 
     @OneToMany(mappedBy = "customer")

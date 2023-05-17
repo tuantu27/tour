@@ -1,7 +1,7 @@
 package com.example.tour.service;
 
+import com.example.tour.entity.ToursEntity;
 import com.example.tour.entity.TypeTourEntity;
-import com.example.tour.model.dto.MultipleTypeTourDTO;
 import com.example.tour.model.dto.ToursDTO;
 import com.example.tour.model.dto.TypeTourDTO;
 import com.example.tour.repository.ITypeTourRepository;
@@ -19,7 +19,7 @@ public class TypeTourService implements ITypeTourService {
     ITypeTourRepository iTypeTourRepository;
     @Override
     public List<TypeTourDTO> getAll() {
-        List<TypeTourEntity> typeTourEntities = iTypeTourRepository.findAll();
+        List<TypeTourEntity> typeTourEntities = iTypeTourRepository.getTypeTourEntitiesByStatus(1);
         List<TypeTourDTO> typeTourDTOS = new ArrayList<>();
         for (TypeTourEntity tour : typeTourEntities) {
             TypeTourDTO typeTourDTO = tour.toDto(tour);
@@ -46,6 +46,7 @@ public class TypeTourService implements ITypeTourService {
             typeTourDTO.setNameTypeTour(tour.getNameTypeTour());
             typeTourDTO.setTypeTourId(tour.getTypeTourId());
             typeTourDTO.setRegion(tour.getRegion());
+            typeTourDTO.setStatus(tour.getStatus());
             typeTourDTOS.add(typeTourDTO);
         }
         return typeTourDTOS;
@@ -58,6 +59,17 @@ public class TypeTourService implements ITypeTourService {
         typeTourDTO.setTypeTourId(typeTourEntityOptional.get().getTypeTourId());
         typeTourDTO.setNameTypeTour(typeTourEntityOptional.get().getNameTypeTour());
         typeTourDTO.setRegion(typeTourEntityOptional.get().getRegion());
+        typeTourDTO.setStatus(typeTourEntityOptional.get().getStatus());
         return  typeTourDTO;
     }
+
+    @Override
+    public void updateTypeTour(TypeTourDTO typeTourDTO) {
+        TypeTourEntity typeTourEntity = iTypeTourRepository.findById(typeTourDTO.getTypeTourId()).get();
+        typeTourEntity.setNameTypeTour(typeTourDTO.getNameTypeTour());
+        typeTourEntity.setRegion(typeTourDTO.getRegion());
+        typeTourEntity.setStatus(typeTourDTO.getStatus());
+        iTypeTourRepository.save(typeTourEntity);
+    }
+
 }

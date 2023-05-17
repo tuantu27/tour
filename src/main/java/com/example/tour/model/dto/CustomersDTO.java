@@ -14,9 +14,10 @@ public class CustomersDTO {
     private Long customerId;
     private String fullName;
     private String phoneNumber;
-    private int gender;
-    private Timestamp dob; //date of birth
     private String address;
+    private String email;
+    private int status;
+    private String number_id;
     private List<ReviewsDTO> reviewsDTOS;
     private List<BookingDTO> bookingDTOS;
 }

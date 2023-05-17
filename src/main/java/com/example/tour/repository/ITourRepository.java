@@ -16,10 +16,12 @@ public interface ITourRepository extends JpaRepository<ToursEntity,Long> {
     @Query(value = "select t from ToursEntity t JOIN t.lstMulTypeTour mt where mt.typeTour.typeTourId=:typeTourId")
     List<ToursEntity> getTourByTypeTourId(@Param("typeTourId") Long typeTourId);
 
-    @Query(value = "select t from ToursEntity t where t.tourName like %:name% and t.startDate =:date")
-    List<ToursEntity> getTourByNameAndDate(@Param("name") String name, @Param("date") String date);
+    @Query(value = "select t from ToursEntity t where t.tourName like %:name% and t.startDate =:date and t.status=:status")
+    List<ToursEntity> getTourByNameAndDate(@Param("name") String name, @Param("date") String date, @Param("status") int status);
 
-    @Query(value = "select t from ToursEntity t where t.tourName like %:name%")
-    List<ToursEntity> getTourByName(@Param("name") String name);
+    @Query(value = "select t from ToursEntity t where t.tourName like %:name% and  t.status=:status")
+    List<ToursEntity> getTourByName(@Param("name") String name , @Param("status") int status);
+
+    List<ToursEntity> getToursEntitiesByStatus(int status);
 
 }

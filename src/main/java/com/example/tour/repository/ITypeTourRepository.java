@@ -13,4 +13,5 @@ public interface ITypeTourRepository  extends JpaRepository<TypeTourEntity,Long>
     @Query(value = "select a.name_type_tour ,a.type_tour_id,a.region from type_tour a , multiple_type_tour b where a.type_tour_id = b.type_tour_id and b.tour_id=?1",nativeQuery = true)
     List<TypeTourEntity> getTypeTourByTourId(Long tourId);
 
+    List<TypeTourEntity> getTypeTourEntitiesByStatus(int status);
 }
