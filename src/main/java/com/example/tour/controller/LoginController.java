@@ -46,7 +46,7 @@ public class LoginController {
                     && 1==(users.get(i).getStatus()) ) {
                 for (RoleEntity role : users.get(i).getRoles()) {
                     if (role.getRole().equals("SubAdmin")) {
-                        redirectURL = "/subAdmin/tour";
+                        redirectURL = "/subAdmin/statics/" + users.get(i).getAccountId();
                     } else if (role.getRole().equals("Admin")) {
                         redirectURL = "/admin/company";
                     }

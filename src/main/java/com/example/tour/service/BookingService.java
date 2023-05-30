@@ -4,6 +4,8 @@ import com.example.tour.entity.BookingEntity;
 import com.example.tour.entity.CustomersEntity;
 import com.example.tour.entity.ToursEntity;
 import com.example.tour.model.dto.BookingDTO;
+import com.example.tour.model.dto.CustomersDTO;
+import com.example.tour.model.dto.DataDTO;
 import com.example.tour.model.dto.ToursDTO;
 import com.example.tour.repository.IBookingRepository;
 import com.example.tour.repository.ICustomerRepository;
@@ -11,6 +13,8 @@ import com.example.tour.repository.ITourRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -56,5 +60,43 @@ public class BookingService implements IBookingService{
         ToursDTO toursDTO = toursEntity.get().toDto(toursEntity.get());
         bookingDTO.setToursDTO(toursDTO);
         return bookingDTO;
+    }
+
+    @Override
+    public List<BookingDTO> getAllByAccountIdAndStatus(Long accountId,int status) {
+        List<BookingEntity> list = iBookingRepository.getBookingEntitiesByTour_Account_AccountIdAndStatus(accountId,status);
+        List<BookingDTO> list1 = new ArrayList<>();
+        for(BookingEntity bookingEntity: list){
+            BookingDTO bookingDTO = new BookingDTO();
+            bookingDTO.setBookingId(bookingEntity.getBookingId());
+            bookingDTO.setBookingTime(bookingEntity.getBookingTime());
+            bookingDTO.setPaymentMethod(bookingEntity.getPaymentMethod());
+            bookingDTO.setNumberAdult(bookingEntity.getNumberAdult());
+            bookingDTO.setNumberChildren(bookingEntity.getNumberChildren());
+            bookingDTO.setNumberInfant(bookingEntity.getNumberInfant());
+            bookingDTO.setStatus(bookingEntity.getStatus());
+            bookingDTO.setTotalPrice(bookingEntity.getTotalPrice());
+            Optional<ToursEntity> toursEntity = iTourRepository.findById(bookingEntity.getTour().getTourId());
+            ToursDTO toursDTO = toursEntity.get().toDto(toursEntity.get());
+            Optional<CustomersEntity> customersEntity = iCustomerRepository.findById(bookingEntity.getCustomer().getCustomerId());
+            CustomersDTO customersDTO = customersEntity.get().toDto(customersEntity.get());
+            bookingDTO.setToursDTO(toursDTO);
+            bookingDTO.setCustomersDTO(customersDTO);
+            list1.add(bookingDTO);
+        }
+        return list1;
+    }
+
+    @Override
+    public void deleteBooking(Long booking_id) {
+        BookingEntity bookingEntity = iBookingRepository.findById(booking_id).get();
+        bookingEntity.setStatus(0);
+        iBookingRepository.save(bookingEntity);
+    }
+
+    @Override
+    public List<DataDTO> getTotal_Month(Long accountId) {
+        List<DataDTO> dataDTOList = iBookingRepository.getTotal_Month(accountId);
+        return dataDTOList;
     }
 }

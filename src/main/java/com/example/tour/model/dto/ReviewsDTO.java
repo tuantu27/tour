@@ -12,9 +12,10 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 public class ReviewsDTO {
     private Long reviewId;
+    private String fullName;
     private String content;
+    private Long tourId;
     private Timestamp createAt;
     private Timestamp updateAt;
-    private CustomersDTO customersDTO;
     private ToursDTO toursDTO;
 }

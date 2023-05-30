@@ -21,11 +21,7 @@ public class ReviewsEntity {
     private String content;
     private Timestamp createAt;
     private Timestamp updateAt;
-
-
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name="customerId")
-    private CustomersEntity customer;
+    private String fullName;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name="tourId")

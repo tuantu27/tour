@@ -2,8 +2,10 @@ package com.example.tour.controller;
 
 import com.example.tour.config.MvcConfig;
 import com.example.tour.entity.AccountsEntity;
+import com.example.tour.exception.CustomException;
 import com.example.tour.model.dto.*;
 import com.example.tour.service.*;
+import com.example.tour.utils.Formatter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,12 +14,12 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 @Controller
 @RequestMapping("/subAdmin")
@@ -38,6 +40,13 @@ public class SubAdminController {
 
     @Autowired
     ICompanyService iCompanyService;
+
+    @Autowired
+    IBookingService iBookingService;
+
+    @Autowired
+    ICustomerService iCustomerService;
+
 
     @GetMapping("/home")
     public String viewHome() {
@@ -171,5 +180,60 @@ public class SubAdminController {
         return "reviewTour";
 
     }
+    @GetMapping(value = "/customer/{id}")
+    public String viewCustomer(Model model,@PathVariable("id") Long accountId){
+        List<BookingDTO> bookingDTOS = iBookingService.getAllByAccountIdAndStatus(accountId,1);
+        model.addAttribute("bookingDTOS",bookingDTOS);
+        return "customer";
+
+    }
+    @GetMapping(value = "/delete-Booking/{id}")
+    public String deleteBooking(Model model, @PathVariable("id")Long id){
+        iBookingService.deleteBooking(id);
+        return "redirect:/subAdmin/tour";
+
+    }
+
+    @GetMapping(value = "/view-Email/{booking_id}/{cus_id}")
+    public String view_mail(Model model,@PathVariable("booking_id") Long booking_id,@PathVariable("cus_id")Long cus_id) throws CustomException {
+        Formatter formatter = new Formatter();
+        BookingDTO bookingDTO = iBookingService.getById(booking_id);
+        CustomersDTO customersDTO = iCustomerService.getById(cus_id);
+        ToursDTO toursDTO = iTourService.getById(bookingDTO.getToursDTO().getTourId());
+        String formatAllPrice =  formatter.formatCurrency(String.valueOf(bookingDTO.getTotalPrice()),"VND");
+        bookingDTO.setFormatAllPrice(formatAllPrice);
+        model.addAttribute("bookingDTO",bookingDTO);
+        model.addAttribute("customersDTO",customersDTO);
+        model.addAttribute("toursDTO",toursDTO);
+        return "view_mail";
+    }
+    @GetMapping(value = "/statics/{id}")
+    public String view_statics(Model model , @PathVariable("id") Long accountId) throws CustomException {
+        List<DataDTO> dataDTOList = iBookingService.getTotal_Month(accountId);
+        List<DataDTO> lstDTO = new ArrayList<>();
+        for(int i = 1 ;i<=12;i++){
+            DataDTO dto = new DataDTO();
+            dto.setMonth(i);
+            dto.setTotal(0L);
+            lstDTO.add(dto);
+        }
+        for(int i = 0 ; i<lstDTO.size();i++){
+            for (int j = 0 ; j<dataDTOList.size();j++){
+                if(lstDTO.get(i).getMonth() == dataDTOList.get(j).getMonth()){
+                    lstDTO.get(i).setTotal(dataDTOList.get(j).getTotal());
+                }
+            }
+        }
+        Map<String, Integer> graphData = new TreeMap<>();
+        for (DataDTO dataDTO: lstDTO) {
+            DataDTO dto = new DataDTO();
+            graphData.put(""+dataDTO.getMonth(), Math.toIntExact(dataDTO.getTotal()));
+        }
+
+        model.addAttribute("chartData", graphData);
+        return "statics";
+    }
+
+
 
 }

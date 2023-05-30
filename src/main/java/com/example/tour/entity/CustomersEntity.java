@@ -1,5 +1,7 @@
 package com.example.tour.entity;
 import javax.persistence.*;
+
+import com.example.tour.model.dto.CustomersDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,12 +26,21 @@ public class CustomersEntity {
     private String address;
     private int status;
 
-
-    @OneToMany(mappedBy = "customer")
-    private List<ReviewsEntity> lstReview;
-
     @OneToMany(mappedBy = "customer")
     private List<BookingEntity> lstBooking;
+
+    public static CustomersDTO toDto(CustomersEntity customersEntity){
+        CustomersDTO customersDTO = new CustomersDTO();
+        customersDTO.setCustomerId(customersEntity.getCustomerId());
+        customersDTO.setFullName(customersEntity.getFullName());
+        customersDTO.setCustomerId(customersEntity.getCustomerId());
+        customersDTO.setAddress(customersEntity.getAddress());
+        customersDTO.setEmail(customersEntity.getEmail());
+        customersDTO.setPhoneNumber(customersEntity.getPhoneNumber());
+        customersDTO.setStatus(customersEntity.getStatus());
+        customersDTO.setNumber_id(customersEntity.getNumber_id());
+        return customersDTO;
+    }
 
 
 }

@@ -30,6 +30,9 @@ public class TourController {
     @Autowired
     IBookingService iBookingService;
 
+    @Autowired
+    IReviewService iReviewService;
+
     @GetMapping(value = "/updateInfo")
     public String updateInfo(Model model ,@ModelAttribute("bookingDTO")BookingDTO bookingDTO){
         long total = 0;
@@ -56,10 +59,15 @@ public class TourController {
         toursDTO.setFormatPriceIn(z);
         InfoBookingDTO infoBookingDTO = new InfoBookingDTO();
         infoBookingDTO.setTourId(id);
+        ReviewsDTO reviewsDTO = new ReviewsDTO();
+        reviewsDTO.setTourId(id);
         List<TypeTourDTO> lstTypeTour = iTypeTourService.getAll();
+        List<ReviewsDTO> listReview = iReviewService.getReviewByTourId(id);
+        model.addAttribute("listReview",listReview);
         model.addAttribute("infoBookingDTO",infoBookingDTO);
         model.addAttribute("lstTypeTour", lstTypeTour);
         model.addAttribute("tourDetail",toursDTO);
+        model.addAttribute("reviewsDTO",reviewsDTO);
         return "tourDetail_Booking";
     }
 
@@ -105,6 +113,35 @@ public class TourController {
         model.addAttribute("customersDTO",customersDTO);
         model.addAttribute("toursDTO",toursDTO);
         return "bill";
+    }
+
+    @PostMapping(value = "/add_review")
+    public String addReView(@ModelAttribute("reviewsDTO") ReviewsDTO reviewsDTO, Model model) throws CustomException {
+        Date date = new Date();
+        Timestamp timestamp2 = new Timestamp(date.getTime());
+        reviewsDTO.setCreateAt(timestamp2);
+        iReviewService.saveReview(reviewsDTO);
+        Formatter formatter = new Formatter();
+
+        ToursDTO toursDTO = iTourService.getById(reviewsDTO.getTourId());
+        String x =  formatter.formatCurrency(String.valueOf(toursDTO.getPriceAdult()),"VND");
+        String y =  formatter.formatCurrency(String.valueOf(toursDTO.getPriceChildren()),"VND");
+        String z =  formatter.formatCurrency(String.valueOf(toursDTO.getPriceInfant()),"VND");
+        toursDTO.setFormatPrice(x);
+        toursDTO.setFormatPriceChil(y);
+        toursDTO.setFormatPriceIn(z);
+        InfoBookingDTO infoBookingDTO = new InfoBookingDTO();
+        infoBookingDTO.setTourId(reviewsDTO.getTourId());
+        ReviewsDTO reviewsDTO1 = new ReviewsDTO();
+        reviewsDTO.setTourId(reviewsDTO.getTourId());
+        List<TypeTourDTO> lstTypeTour = iTypeTourService.getAll();
+        List<ReviewsDTO> listReview = iReviewService.getReviewByTourId(reviewsDTO.getTourId());
+        model.addAttribute("listReview",listReview);
+        model.addAttribute("infoBookingDTO",infoBookingDTO);
+        model.addAttribute("lstTypeTour", lstTypeTour);
+        model.addAttribute("tourDetail",toursDTO);
+        model.addAttribute("reviewsDTO",reviewsDTO1);
+        return "tourDetail_Booking";
     }
 }
 

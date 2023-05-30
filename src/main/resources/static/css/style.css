@@ -5619,10 +5619,8 @@ procduct details css
 }
 .comment-area .comment-content {
   border: 1px solid #e6e6e6;
-  width: -moz-calc(100% - 65px);
-  width: -webkit-calc(100% - 65px);
-  width: calc(100% - 65px);
-  float: right;
+  width: 140%;
+
   padding: 20px;
 }
 .comment-area .comment-content .comment-header {
@@ -5672,6 +5670,7 @@ procduct details css
 
 .comment-form-wrap {
   padding-top: 30px;
+  width: 140%;
 }
 .comment-form-wrap .rate-wrap {
   padding: 0 15px;

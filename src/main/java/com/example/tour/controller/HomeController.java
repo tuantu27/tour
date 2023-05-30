@@ -1,8 +1,10 @@
 package com.example.tour.controller;
 
 import com.example.tour.exception.CustomException;
+import com.example.tour.model.dto.DataDTO;
 import com.example.tour.model.dto.ToursDTO;
 import com.example.tour.model.dto.TypeTourDTO;
+import com.example.tour.service.IBookingService;
 import com.example.tour.service.ITourService;
 import com.example.tour.service.ITypeTourService;
 import com.example.tour.utils.Formatter;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 @Controller
 public class HomeController {
@@ -22,6 +26,10 @@ public class HomeController {
     ITourService iTourService;
     @Autowired
     ITypeTourService iTypeTourService;
+
+    @Autowired
+    IBookingService iBookingService;
+
 
     @GetMapping(value = "/home")
     public String showHomePage(Model model) throws CustomException {
@@ -77,5 +85,7 @@ public class HomeController {
         model.addAttribute("lstTypeTour", lstTypeTour);
         return "home";
     }
+
+
 
 }

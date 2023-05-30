@@ -20,5 +20,6 @@ public class BookingDTO {
     private int status;
     private String formatAllPrice;
     private CustomersDTO customersDTO;
+    private String companyName1;
     private ToursDTO toursDTO;
 }
