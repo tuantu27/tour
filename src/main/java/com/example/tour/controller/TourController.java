@@ -33,17 +33,8 @@ public class TourController {
     @Autowired
     IReviewService iReviewService;
 
-    @GetMapping(value = "/updateInfo")
-    public String updateInfo(Model model ,@ModelAttribute("bookingDTO")BookingDTO bookingDTO){
-        long total = 0;
-        total = bookingDTO.getNumberAdult()*bookingDTO.getToursDTO().getPriceAdult()+
-                bookingDTO.getNumberChildren()*bookingDTO.getToursDTO().getPriceChildren()+
-                bookingDTO.getNumberInfant()*bookingDTO.getToursDTO().getPriceInfant();
-
-        model.addAttribute("total",total);
-
-        return "";
-    }
+    @Autowired
+    IDateTourService iDateTourService;
 
 
     @GetMapping(value = "/tour_detail/{id}")
@@ -89,6 +80,7 @@ public class TourController {
         bookingDTO.setNumberChildren(infoBookingDTO.getNumberChildren());
         bookingDTO.setNumberInfant(infoBookingDTO.getNumberInfant());
         bookingDTO.setTotalPrice(infoBookingDTO.getTotalPrice());
+        bookingDTO.setStartDate(infoBookingDTO.getStartDate());
         if(methodPayment==1){
             bookingDTO.setPaymentMethod("Thanh toán trực tiếp");
         } else if (methodPayment == 2) {
@@ -96,6 +88,7 @@ public class TourController {
         }
         bookingDTO.setCustomersDTO(iCustomerService.getById(cus_id));
         Long booking_id = iBookingService.saveBooking(bookingDTO);
+        iDateTourService.updateDateTour(infoBookingDTO.getDateTourId(),infoBookingDTO.getNumberRest());
         redirectAttributes.addAttribute("cus_id",cus_id);
         redirectAttributes.addAttribute("booking_id",booking_id);
 
@@ -109,6 +102,7 @@ public class TourController {
         ToursDTO toursDTO = iTourService.getById(bookingDTO.getToursDTO().getTourId());
         String formatAllPrice =  formatter.formatCurrency(String.valueOf(bookingDTO.getTotalPrice()),"VND");
         bookingDTO.setFormatAllPrice(formatAllPrice);
+        toursDTO.setStartDate(bookingDTO.getStartDate());
         model.addAttribute("bookingDTO",bookingDTO);
         model.addAttribute("customersDTO",customersDTO);
         model.addAttribute("toursDTO",toursDTO);

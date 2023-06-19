@@ -23,7 +23,30 @@
     />
 
 
+    <style>
+        .alert {
+            padding: 20px;
+            background-color:#00d084;
+            color: white;
+            width:300px;
+            float:right;
+            z-index: 1;
 
+        }
+        .closebtn {
+            margin-left: 15px;
+            color: white;
+            font-weight: bold;
+            float: right;
+            font-size: 22px;
+            line-height: 20px;
+            cursor: pointer;
+            transition: 0.5s;
+        }
+        .closebtn:hover {
+            color: black;
+        }
+    </style>
     <title>[[${pageTitle}]]</title>
 </head>
 <body>
@@ -35,6 +58,10 @@
         <div class="search-field">
             <form>
                 <div class="form-group">
+                    <div class="alert" th:if="${success}">
+                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                        <strong th:text="${success}"></strong>
+                    </div>
                     <!--                    <input type="text" class="form-control" id="search" placeholder="Search Now">-->
                     <!--                    <a href="#"><span class="search_btn"><i class="fa fa-search" aria-hidden="true"></i></span></a>-->
                 </div>

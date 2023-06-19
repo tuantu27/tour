@@ -18,6 +18,7 @@ public class BookingDTO {
     private String paymentMethod;
     private Long totalPrice;
     private int status;
+    private String startDate;
     private String formatAllPrice;
     private CustomersDTO customersDTO;
     private String companyName1;

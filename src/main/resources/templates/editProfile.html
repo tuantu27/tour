@@ -40,7 +40,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Địa chỉ email</label>
-                                        <input  th:field="*{email}" th:value="${company.email}" class="form-control" type="text">
+                                        <input  th:field="*{email}" th:value="${company.email}" id="email" class="form-control" type="text" th:onchange="'validateEmail();'">
                                     </div>
                                 </div>
                             </div>
@@ -69,6 +69,18 @@
 <script th:src="@{/admin_style/js/jquery.slicknav.js}"></script>
 <script th:src="@{/admin_style/js/dashboard-custom.js}"></script>
 
-
+<script>
+    function validateEmail(){
+        var content = document.getElementById("email").value;
+        var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        if(!content.match(mailformat))
+        {
+            alert("Sai định dạng email!");
+            document.getElementById("email").value='';
+            document.getElementById("email").focus();
+            return true;
+        }
+    }
+</script>
 </body>
 </html>

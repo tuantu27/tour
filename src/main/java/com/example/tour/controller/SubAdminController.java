@@ -7,6 +7,7 @@ import com.example.tour.model.dto.*;
 import com.example.tour.service.*;
 import com.example.tour.utils.Formatter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -54,9 +55,16 @@ public class SubAdminController {
         return "subadmin";
     }
     @GetMapping("/tour")
-    public String viewTour(HttpSession session,Model model) {
+    public String viewTour(HttpSession session, Model model, @RequestParam(value="success",required = false) String message) {
         AccountsEntity accountsEntity = (AccountsEntity) session.getAttribute("user");
         List<ToursDTO> toursDTOS = iTourService.getToursByAccountId(accountsEntity.getAccountId());
+//      String message = (String) model.getAttribute("success");
+        if(message != null || message !=""){
+            model.addAttribute("success", message);
+        }else{
+
+        }
+
         model.addAttribute("lstTour", toursDTOS);
         return "tour_subAdmin";
     }
@@ -74,7 +82,7 @@ public class SubAdminController {
     }
     @PostMapping("/saveTour")
     public String saveTour(@ModelAttribute("tourDTO")ToursDTO toursDTO,@RequestParam("newImage") MultipartFile file
-            ,@RequestParam("destination")Long[] lstTypeTourId,HttpSession session){
+            ,@RequestParam("destination")Long[] lstTypeTourId,HttpSession session,RedirectAttributes redirectAttributes){
         AccountsEntity accountsEntity = (AccountsEntity) session.getAttribute("user");
         String nameFile = mvcConfig.uploadImages(file);
         toursDTO.setImgName(nameFile);
@@ -89,12 +97,13 @@ public class SubAdminController {
             temp.setTypeTourDTO(iTypeTourService.getById(arrTypeTourId[i]));
             iMultipleTypeTourService.saveMultipleTT(temp);
         }
-
+        redirectAttributes.addAttribute("success","Thêm chuyến đi thành công!");
         return "redirect:/subAdmin/tour";
     }
     @PostMapping("/saveTypeTour")
-    public String saveTypeTour(@ModelAttribute("typeTourDTO")TypeTourDTO typeTourDTO){
+    public String saveTypeTour(@ModelAttribute("typeTourDTO")TypeTourDTO typeTourDTO,RedirectAttributes redirectAttributes){
         iTypeTourService.saveTypeTour(typeTourDTO);
+        redirectAttributes.addAttribute("success","Thêm địa điểm thành công!");
         return "redirect:/subAdmin/tour";
     }
 
@@ -113,7 +122,7 @@ public class SubAdminController {
     }
     @PostMapping("/updateTour")
     public String updateTour(@ModelAttribute("tourDTO")ToursDTO toursDTO,@RequestParam("newImage") MultipartFile file
-            ,@RequestParam(value = "destination",required = false)Long[] lstTypeTourId,HttpSession session){
+            ,@RequestParam(value = "destination",required = false)Long[] lstTypeTourId,HttpSession session,RedirectAttributes redirectAttributes){
         AccountsEntity accountsEntity = (AccountsEntity) session.getAttribute("user");
         toursDTO.setAccountId(accountsEntity.getAccountId());
         String nameFile = mvcConfig.uploadImages(file);
@@ -145,14 +154,17 @@ public class SubAdminController {
                 }
 
             }
+
         }
+        redirectAttributes.addAttribute("success","Cập nhật thành công!");
 
         return "redirect:/subAdmin/tour";
     }
 
     @GetMapping(value = "/delete-Tour/{id}")
-    public String deleteProduct(Model model, @PathVariable("id")Long id){
+    public String deleteProduct(Model model, @PathVariable("id")Long id,RedirectAttributes redirectAttributes){
         iTourService.deleteTour(id);
+        redirectAttributes.addAttribute("success","Xóa chuyến đi thành công!");
         return "redirect:/subAdmin/tour";
 
     }
@@ -167,8 +179,9 @@ public class SubAdminController {
 
     }
     @PostMapping(value = "/updateProfile")
-    public String updateCompany(Model model,@ModelAttribute("company")CompanysDTO companysDTO){
+    public String updateCompany(Model model,@ModelAttribute("company")CompanysDTO companysDTO,RedirectAttributes redirectAttributes){
         iCompanyService.updateProfile(companysDTO);
+        redirectAttributes.addAttribute("success","Cập nhật thành công!");
         return "redirect:/subAdmin/tour";
 
     }
@@ -188,8 +201,9 @@ public class SubAdminController {
 
     }
     @GetMapping(value = "/delete-Booking/{id}")
-    public String deleteBooking(Model model, @PathVariable("id")Long id){
+    public String deleteBooking(Model model, @PathVariable("id")Long id,RedirectAttributes redirectAttributes){
         iBookingService.deleteBooking(id);
+        redirectAttributes.addAttribute("success","Xóa chuyến đi thành công!");
         return "redirect:/subAdmin/tour";
 
     }
@@ -210,12 +224,16 @@ public class SubAdminController {
     @GetMapping(value = "/statics/{id}")
     public String view_statics(Model model , @PathVariable("id") Long accountId) throws CustomException {
         List<DataDTO> dataDTOList = iBookingService.getTotal_Month(accountId);
+        List<DataDTO> dataDTOPeople = iBookingService.getTotal_People(accountId);
         List<DataDTO> lstDTO = new ArrayList<>();
+        List<DataDTO> lstDTO1 = new ArrayList<>();
         for(int i = 1 ;i<=12;i++){
             DataDTO dto = new DataDTO();
             dto.setMonth(i);
             dto.setTotal(0L);
+            dto.setTotalPeople(0L);
             lstDTO.add(dto);
+            lstDTO1.add(dto);
         }
         for(int i = 0 ; i<lstDTO.size();i++){
             for (int j = 0 ; j<dataDTOList.size();j++){
@@ -224,13 +242,24 @@ public class SubAdminController {
                 }
             }
         }
+        for(int i = 0 ; i<lstDTO1.size();i++){
+            for (int j = 0 ; j<dataDTOPeople.size();j++){
+                if(lstDTO1.get(i).getMonth() == dataDTOPeople.get(j).getMonth()){
+                    lstDTO1.get(i).setTotalPeople(dataDTOPeople.get(j).getTotalPeople());
+                }
+            }
+        }
         Map<String, Integer> graphData = new TreeMap<>();
         for (DataDTO dataDTO: lstDTO) {
-            DataDTO dto = new DataDTO();
             graphData.put(""+dataDTO.getMonth(), Math.toIntExact(dataDTO.getTotal()));
+        }
+        Map<String, Integer> graphDataPeople = new TreeMap<>();
+        for (DataDTO dataDTO: lstDTO1) {
+            graphDataPeople.put(""+dataDTO.getMonth(), Math.toIntExact(dataDTO.getTotalPeople()));
         }
 
         model.addAttribute("chartData", graphData);
+        model.addAttribute("graphDataPeople", graphDataPeople);
         return "statics";
     }
 

@@ -33,6 +33,7 @@ public class ToursEntity {
     private String startDes;
     private Long priceInfant;
     private int status;
+    private Long quantity;
 
 
     @ManyToOne(cascade = CascadeType.ALL)
@@ -45,6 +46,9 @@ public class ToursEntity {
  
     @OneToMany(mappedBy = "tour")
     private List<BookingEntity> lstBooking;
+
+    @OneToMany(mappedBy = "tour")
+    private List<DateTourEntity> lstDateTour;
 
     @OneToMany(mappedBy = "tour")
     private List<MultipleTypeTourEntity> lstMulTypeTour;
@@ -62,6 +66,7 @@ public class ToursEntity {
         toursDTO.setPriceChildren(toursEntity.getPriceChildren());
         toursDTO.setPriceInfant(toursEntity.getPriceInfant());
         toursDTO.setStatus(toursEntity.getStatus());
+        toursDTO.setQuantity(toursEntity.getQuantity());
         toursDTO.setAccountsDTO(toursEntity.getAccount().toDto(toursEntity.getAccount()));
 
         return toursDTO;

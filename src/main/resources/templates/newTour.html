@@ -27,8 +27,8 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label>Ngày bắt đầu</label>
-                                        <input  th:field="*{startDate}" class="form-control" type="text" placeholder="DD/MM/YY">
+                                        <label>Số người tham gia</label>
+                                        <input  th:field="*{quantity}" class="form-control" id="dateStart" type="text">
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
@@ -40,20 +40,20 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Giá người lớn</label>
-                                        <input  th:field="*{priceAdult}" class="form-control" type="text">
+                                        <input  th:field="*{priceAdult}" class="form-control" id="adultPrice" type="text" th:onchange="'validateNumber();'">
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Giá trẻ con</label>
-                                        <input  th:field="*{priceChildren}" class="form-control" type="text">
+                                        <input  th:field="*{priceChildren}" id="chilPrice" class="form-control" type="text" th:onchange="'validateNumber();'">
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
 
                                     <div class="form-group">
                                         <label>Giá trẻ sơ sinh</label>
-                                        <input  th:field="*{priceInfant}" class="form-control" type="text">
+                                        <input  th:field="*{priceInfant}" id="infPrice" class="form-control" type="text" th:onchange="'validateNumber();'">
                                     </div>
                                 </div>
 
@@ -166,7 +166,42 @@
         });
     });
 </script>
+<script>
+    function validateDate(){
+        var content = document.getElementById("dateStart").value;
+        var dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
+        if(!content.match(dateformat))
+        {
+            alert("Sai định dạng ngày!");
+            document.getElementById("dateStart").value='';
+            document.getElementById("dateStart").focus();
+            return true;
+        }
+    }
+    function validateNumber(){
+        var adultPrice = document.getElementById("adultPrice").value;
+        var chilPrice = document.getElementById("chilPrice").value;
+        var infPrice = document.getElementById("infPrice").value;
+        var numformat = /[^0-9]/g;
 
+        if(adultPrice.match(numformat)) {
+            alert("Sai định dạng số!");
+            document.getElementById("adultPrice").value='';
+            document.getElementById("adultPrice").focus();
+            return true;
+        }else if(chilPrice.match(numformat)) {
+            alert("Sai định dạng số!");
+            document.getElementById("chilPrice").value='';
+            document.getElementById("chilPrice").focus();
+            return true;
+        }else if(infPrice.match(numformat)) {
+            alert("Sai định dạng số!");
+            document.getElementById("infPrice").value='';
+            document.getElementById("infPrice").focus();
+            return true;
+        }
+    }
+</script>
 <script>
     // Get the modal
     var modal = document.getElementById("myModal");

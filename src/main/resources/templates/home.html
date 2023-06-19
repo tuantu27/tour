@@ -86,10 +86,10 @@
 <!--                                                <i class="fas fa-map-marker-alt"></i>-->
                                                 Malaysia
                                             </li>
-                                            <li th:text="'Ngày Bắt Đầu : '+ ${tour.startDate}" style="margin-top: 5px">
-<!--                                                <i class="fas fa-map-marker-alt"></i>-->
-                                                Malaysia
-                                            </li>
+<!--                                            <li th:text="'Ngày Bắt Đầu : '+ ${tour.startDate}" style="margin-top: 5px">-->
+<!--&lt;!&ndash;                                                <i class="fas fa-map-marker-alt"></i>&ndash;&gt;-->
+<!--                                                Malaysia-->
+<!--                                            </li>-->
                                         </ul>
                                     </div>
                                     <div class="package-content">
@@ -103,8 +103,9 @@
                                             </div>
                                         </div>
 
-                                        <div class="btn-wrap">
+                                        <div class="btn-wrap" style="position: relative">
                                             <a th:href="@{'/tour_detail/'+${tour.tourId}}" class="button-text">Đặt ngay<i class="fas fa-arrow-right"></i></a>
+<!--                                            <span th:text="'Số lượng còn nhận: '+${tour.quantity}" style="position: absolute; right:10px"></span>-->
                                         </div>
                                     </div>
                                 </div>

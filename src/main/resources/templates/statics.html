@@ -13,7 +13,8 @@
                  <div align="center" style="width: 1000px;">
                     <h3>Thống kê doanh thu </h3>
                     <div id="chart_div"></div>
-                    <div id="piechart" style="width: 900px; height: 500px;"></div>
+                     <h3 style="margin-top: 20px">Thống kê số lượng người đăng kí </h3>
+                    <div id="chart_div2" ></div>
                  </div>
             </div>
         </div>
@@ -21,12 +22,13 @@
 </div>
         <script th:inline="javascript">
             var real_data = /*[[${chartData}]]*/'noValue';
+            var real_data1 = /*[[${graphDataPeople}]]*/'noValue1';
             $(document).ready(function() {
                 google.charts.load('current', {
                     packages : [ 'corechart', 'bar' ]
                 });
                 google.charts.setOnLoadCallback(drawColumnChart);
-                google.charts.setOnLoadCallback(drawPieChart);
+                google.charts.setOnLoadCallback(drawColumnChartPP);
             });
             function drawColumnChart() {
                 var data = new google.visualization.DataTable();
@@ -48,20 +50,40 @@
                     .getElementById('chart_div'));
                 chart.draw(data, options);
             }
-            function drawPieChart() {
+            function drawColumnChartPP() {
                 var data = new google.visualization.DataTable();
-                data.addColumn('string', 'Tháng');
-                data.addColumn('number', 'Views');
-                Object.keys(real_data).forEach(function(key) {
-                    data.addRow(['Tháng ' + key, real_data[key] ]);
+                data.addColumn('string', 'Năm');
+                data.addColumn('number', 'Số người tham gia');
+                Object.keys(real_data1).forEach(function(key) {
+                    data.addRow(['Tháng '+key, real_data1[key] ]);
                 });
                 var options = {
-                    title : ''
+                    title : 'Thống kê theo tháng trong năm',
+                    hAxis : {
+                        title : 'Tháng',
+                    },
+                    vAxis : {
+                        title : 'Số người tham gia'
+                    }
                 };
-                var chart = new google.visualization.PieChart(document
-                    .getElementById('piechart'));
+                var chart = new google.visualization.ColumnChart(document
+                    .getElementById('chart_div2'));
                 chart.draw(data, options);
             }
+            // function drawPieChart() {
+            //     var data = new google.visualization.DataTable();
+            //     data.addColumn('string', 'Tháng');
+            //     data.addColumn('number', 'Views');
+            //     Object.keys(real_data).forEach(function(key) {
+            //         data.addRow(['Tháng ' + key, real_data[key] ]);
+            //     });
+            //     var options = {
+            //         title : ''
+            //     };
+            //     var chart = new google.visualization.PieChart(document
+            //         .getElementById('piechart'));
+            //     chart.draw(data, options);
+            // }
         </script>
 
 

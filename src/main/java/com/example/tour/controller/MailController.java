@@ -50,7 +50,7 @@ public class MailController {
 
     @PostMapping("/send_mail")
     public String send_Email(HttpServletRequest request, HttpServletResponse response,@ModelAttribute("customersDTO") CustomersDTO customersDTO, @ModelAttribute("toursDTO") ToursDTO toursDTO,
-                             @ModelAttribute("bookingDTO") BookingDTO bookingDTO) throws MessagingException, IOException {
+                             @ModelAttribute("bookingDTO") BookingDTO bookingDTO,RedirectAttributes redirectAttributes) throws MessagingException, IOException {
         Mail mail = new Mail();
         mail.setFrom("dinhkhactu2001@gmail.com");//replace with your desired email
         mail.setMailTo("tuantu27092001@gmail.com");//replace with your desired email
@@ -64,6 +64,7 @@ public class MailController {
 //        model.put("sign", "Java Developer");
         mail.setProps(bindingMap);
         emailService.sendEmail(request,response,mail,bindingMap);
+        redirectAttributes.addAttribute("success","Gửi mail thành công!");
         return "redirect:/subAdmin/tour";
     }
 }

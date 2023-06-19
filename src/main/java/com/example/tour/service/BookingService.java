@@ -34,6 +34,7 @@ public class BookingService implements IBookingService{
         bookingEntity.setBookingTime(bookingDTO.getBookingTime());
         bookingEntity.setStatus(1);
         bookingEntity.setNumberAdult(bookingDTO.getNumberAdult());
+        bookingEntity.setStartDate(bookingDTO.getStartDate());
         bookingEntity.setNumberChildren(bookingDTO.getNumberChildren());
         bookingEntity.setNumberInfant(bookingDTO.getNumberInfant());
         bookingEntity.setTotalPrice(bookingDTO.getTotalPrice());
@@ -55,6 +56,7 @@ public class BookingService implements IBookingService{
         bookingDTO.setNumberChildren(bookingEntity.get().getNumberChildren());
         bookingDTO.setNumberInfant(bookingEntity.get().getNumberInfant());
         bookingDTO.setStatus(bookingEntity.get().getStatus());
+        bookingDTO.setStartDate(bookingEntity.get().getStartDate());
         bookingDTO.setTotalPrice(bookingEntity.get().getTotalPrice());
         Optional<ToursEntity> toursEntity = iTourRepository.findById(bookingEntity.get().getTour().getTourId());
         ToursDTO toursDTO = toursEntity.get().toDto(toursEntity.get());
@@ -75,6 +77,7 @@ public class BookingService implements IBookingService{
             bookingDTO.setNumberChildren(bookingEntity.getNumberChildren());
             bookingDTO.setNumberInfant(bookingEntity.getNumberInfant());
             bookingDTO.setStatus(bookingEntity.getStatus());
+            bookingDTO.setStartDate(bookingEntity.getStartDate());
             bookingDTO.setTotalPrice(bookingEntity.getTotalPrice());
             Optional<ToursEntity> toursEntity = iTourRepository.findById(bookingEntity.getTour().getTourId());
             ToursDTO toursDTO = toursEntity.get().toDto(toursEntity.get());
@@ -97,6 +100,12 @@ public class BookingService implements IBookingService{
     @Override
     public List<DataDTO> getTotal_Month(Long accountId) {
         List<DataDTO> dataDTOList = iBookingRepository.getTotal_Month(accountId);
+        return dataDTOList;
+    }
+
+    @Override
+    public List<DataDTO> getTotal_People(Long accountId) {
+        List<DataDTO> dataDTOList = iBookingRepository.getTotal_People(accountId);
         return dataDTOList;
     }
 }

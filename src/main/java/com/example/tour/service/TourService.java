@@ -36,7 +36,7 @@ public class TourService implements ITourService {
         ToursEntity toursEntity = new ToursEntity();
         toursEntity.setTourName(toursDTO.getTourName());
         toursEntity.setDuration(toursDTO.getDuration());
-        toursEntity.setStartDate(toursDTO.getStartDate());
+        toursEntity.setQuantity(toursDTO.getQuantity());
         toursEntity.setStartDes(toursDTO.getStartDes());
         toursEntity.setImgName(toursDTO.getImgName());
         toursEntity.setStatus(1);
@@ -54,7 +54,7 @@ public class TourService implements ITourService {
         ToursEntity toursEntity = iTourRepository.findById(toursDTO.getTourId()).get();
         toursEntity.setTourName(toursDTO.getTourName());
         toursEntity.setDuration(toursDTO.getDuration());
-        toursEntity.setStartDate(toursDTO.getStartDate());
+        toursEntity.setQuantity(toursDTO.getQuantity());
         toursEntity.setStartDes(toursDTO.getStartDes());
         toursEntity.setImgName(toursDTO.getImgName());
         toursEntity.setStatus(1);

@@ -13,4 +13,5 @@ public interface IBookingService {
     void deleteBooking(Long booking_id);
 
     List<DataDTO> getTotal_Month(Long accountId);
+    List<DataDTO> getTotal_People(Long accountId);
 }

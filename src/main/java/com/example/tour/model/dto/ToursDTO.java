@@ -25,6 +25,7 @@ public class ToursDTO {
     private Long priceInfant;
     private String startDes;
     private int status;
+    private Long quantity;
     private Long accountId;
     private AccountsDTO accountsDTO;
     private List<ReviewsDTO> reviewsDTOS;

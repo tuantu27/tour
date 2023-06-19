@@ -19,6 +19,9 @@ public class InfoBookingDTO {
     private String paymentMethod;
     private Long totalPrice;
     private Long tourId;
+    private String startDate;
+    private Long numberRest;
+    private Long dateTourId;
     private String fullName;
     private String phoneNumber;
     private int gender;

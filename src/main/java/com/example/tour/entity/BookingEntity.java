@@ -27,6 +27,7 @@ public class BookingEntity {
     private Long numberInfant;
     private String paymentMethod;
     private Long totalPrice;
+    private String startDate;
     private int status;
 
 
